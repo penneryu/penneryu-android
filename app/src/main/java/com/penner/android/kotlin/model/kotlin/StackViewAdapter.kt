@@ -1,30 +1,23 @@
-package com.penner.android.kotlin.model
+package com.penner.android.kotlin.model.kotlin
 
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.LinearLayout
+import com.penner.android.utils.PennerUitls
 
 /**
  * Created by PennerYu on 15/10/9.
  */
 class StackViewAdapter(var context: Context, var colors: IntArray) : BaseAdapter() {
 
-    //    lateinit var context: Context
-    //    lateinit var colors: IntArray
-    //
-    //    constructor(context: Context, colors:IntArray) {
-    //        this.context = context;
-    //        this.colors = colors;
-    //    }
-
     override fun getCount(): Int {
         return colors.size()
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        var colorLayoutParams = LinearLayout.LayoutParams(100, 100)
+        var colorLayoutParams = LinearLayout.LayoutParams(PennerUitls.dpToPx(100), PennerUitls.dpToPx(100))
         var colorLayout = LinearLayout(context)
         colorLayout.setBackgroundColor(colors.get(position))
         colorLayout.layoutParams = colorLayoutParams

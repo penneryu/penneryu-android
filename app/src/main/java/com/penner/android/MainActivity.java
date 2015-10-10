@@ -1,16 +1,19 @@
 package com.penner.android;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.penner.android.base.BaseActivity;
-import com.penner.android.kotlin.KotlinActivity;
+import com.penner.android.kotlin.model.main.RecyclerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
@@ -18,6 +21,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentViewToolbar(R.layout.activity_main);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -28,13 +33,13 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(MainActivity.this, KotlinActivity.class);
-                startActivity(intent);
-            }
-        }, 1000);
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.main_recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        List<String> list = new ArrayList<String>();
+        list.add("Fresco");
+        list.add("Kotlin");
+        recyclerView.setAdapter(new RecyclerAdapter(this, list));
     }
 
     @Override

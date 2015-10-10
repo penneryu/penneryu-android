@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.StackView
 import com.penner.android.R
 import com.penner.android.base.BaseActivity
-import com.penner.android.kotlin.model.StackViewAdapter
+import com.penner.android.kotlin.model.kotlin.StackViewAdapter
 
 /**
  * Created by PennerYu on 15/10/9.
@@ -16,7 +16,10 @@ class KotlinActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentViewToolbar(R.layout.activity_kotlin)
+        setContentView(R.layout.activity_kotlin)
+
+        getToolbar().title = "Kotlin"
+        setupToolbar()
 
         stackview = findViewById(R.id.kotlin_stackview) as StackView
 

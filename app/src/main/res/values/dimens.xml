@@ -3,4 +3,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="penner_elevation">8dp</dimen>
+    <dimen name="penner_itemsize">52dp</dimen>
+    <dimen name="penner_itempadding">12dp</dimen>
+    <dimen name="penner_title">16sp</dimen>
+
 </resources>

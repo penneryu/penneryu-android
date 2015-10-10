@@ -1,8 +1,8 @@
 package com.penner.android.base;
 
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.penner.android.R;
 
@@ -14,8 +14,8 @@ public class BaseActivity extends AppCompatActivity {
     Toolbar mToolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
 
         mToolbar = (Toolbar) findViewById(R.id.penner_toolbar);
     }
@@ -31,5 +31,19 @@ public class BaseActivity extends AppCompatActivity {
             setSupportActionBar(mToolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    public Toolbar getToolbar() {
+        return mToolbar;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
