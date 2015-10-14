@@ -7,4 +7,7 @@
     <color name="penner_common_bg">#fcfcfc</color>"
     <color name="penner_activty_bg">#ebebeb</color>
     <color name="penner_list_divider">#cccccc</color>
+
+    <color name="penner_tab_txt">#9A9A9A</color>
+    <color name="penner_tab_txt_selected">#45C01A</color>
 </resources>

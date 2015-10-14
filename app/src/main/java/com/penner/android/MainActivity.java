@@ -39,6 +39,8 @@ public class MainActivity extends BaseActivity {
         List<String> list = new ArrayList<String>();
         list.add("Fresco");
         list.add("Kotlin");
+        list.add("LeanCloud");
+        list.add("BottomTab");
         recyclerView.setAdapter(new RecyclerAdapter(this, list));
     }
 

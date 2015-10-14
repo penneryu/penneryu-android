@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.penner.android.BottomTabActivity">
+
+    <include layout="@layout/penner_toolbar" android:id="@+id/penner_toolbar"/>
+
+    <LinearLayout
+        android:id="@+id/bottom_tab"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <include layout="@layout/bottom_tab_item"
+            android:id="@+id/bottom_tab_penner"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <include layout="@layout/bottom_tab_item"
+            android:id="@+id/bottom_tab_contact"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <include layout="@layout/bottom_tab_item"
+            android:id="@+id/bottom_tab_files"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <include layout="@layout/bottom_tab_item"
+            android:id="@+id/bottom_tab_profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_temp"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_above="@id/bottom_tab"
+        android:background="#d6d6d6"/>
+
+    <RelativeLayout
+        android:id="@+id/bottom_tab_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/view_temp"
+        android:layout_below="@id/penner_toolbar"/>
+
+</RelativeLayout>
