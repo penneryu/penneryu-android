@@ -17,17 +17,18 @@ public class BaseActivity extends AppCompatActivity {
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
 
-        mToolbar = (Toolbar) findViewById(R.id.penner_toolbar);
-    }
-
-    public void setContentViewToolbar(int layoutResID) {
-        super.setContentView(layoutResID);
-        mToolbar = (Toolbar)findViewById(R.id.penner_toolbar);
         setupToolbar();
     }
 
+    public void setContentViewWithoutToolbar(int layoutResID) {
+        super.setContentView(layoutResID);
+        mToolbar = (Toolbar)findViewById(R.id.penner_toolbar);
+    }
+
     protected void setupToolbar() {
+        mToolbar = (Toolbar) findViewById(R.id.penner_toolbar);
         if (mToolbar != null) {
+            mToolbar.setTitle(getToolbarTitle());
             setSupportActionBar(mToolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -35,6 +36,10 @@ public class BaseActivity extends AppCompatActivity {
 
     public Toolbar getToolbar() {
         return mToolbar;
+    }
+
+    protected String getToolbarTitle() {
+        return getString(R.string.app_name);
     }
 
     @Override

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.penner.android.view.bottomtab.penner.DatabindingActivity">
+
+    <data>
+        <variable name="user" type="com.penner.android.model.bottomtab.penner.DatabindingUser"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <include layout="@layout/penner_toolbar"/>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/penner_title"
+            android:text="@{user.firstName}"/>
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/penner_subtitle"
+            android:text="@{user.lastName}"/>
+
+    </LinearLayout>
+
+</layout>

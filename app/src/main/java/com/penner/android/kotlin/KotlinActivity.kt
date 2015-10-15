@@ -18,9 +18,6 @@ class KotlinActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin)
 
-        getToolbar().title = "Kotlin"
-        setupToolbar()
-
         stackview = findViewById(R.id.kotlin_stackview) as StackView
 
         var colors = IntArray(5)
@@ -31,5 +28,9 @@ class KotlinActivity : BaseActivity() {
         colors.set(4, Color.RED)
 
         stackview.adapter = StackViewAdapter(this, colors);
+    }
+
+    override fun getToolbarTitle(): String {
+        return "Kotlin";
     }
 }

@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.LinearLayout
-import com.penner.android.utils.PennerUitls
+import com.penner.android.utils.PennerUtils
 
 /**
  * Created by PennerYu on 15/10/9.
@@ -17,7 +17,7 @@ class StackViewAdapter(var context: Context, var colors: IntArray) : BaseAdapter
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        var colorLayoutParams = LinearLayout.LayoutParams(PennerUitls.dpToPx(100), PennerUitls.dpToPx(100))
+        var colorLayoutParams = LinearLayout.LayoutParams(PennerUtils.dpToPx(100), PennerUtils.dpToPx(100))
         var colorLayout = LinearLayout(context)
         colorLayout.setBackgroundColor(colors.get(position))
         colorLayout.layoutParams = colorLayoutParams

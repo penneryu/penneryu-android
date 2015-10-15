@@ -34,11 +34,13 @@ public class BottomTabActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_tab);
 
-        getToolbar().setTitle(getString(R.string.login));
-        setupToolbar();
-
         initTabs();
         initContents();
+    }
+
+    @Override
+    protected String getToolbarTitle() {
+        return getString(R.string.login);
     }
 
     private void initTabs() {

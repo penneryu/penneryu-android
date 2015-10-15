@@ -10,8 +10,10 @@ public class FrescoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fresco);
+    }
 
-        getToolbar().setTitle("Fresco");
-        setupToolbar();
+    @Override
+    protected String getToolbarTitle() {
+        return "Fresco";
     }
 }

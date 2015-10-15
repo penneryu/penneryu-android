@@ -10,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.penner.android.R;
+import com.penner.android.model.bottomtab.penner.RecyclerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by PennerYu on 15/10/14.
@@ -32,5 +36,8 @@ public class PennerFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView)getView().findViewById(R.id.bootom_penner_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        List<String> list = new ArrayList<>();
+        list.add("Data Binding");
+        recyclerView.setAdapter(new RecyclerAdapter(getActivity(), list));
     }
 }

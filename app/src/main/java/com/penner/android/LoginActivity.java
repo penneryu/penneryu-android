@@ -14,9 +14,8 @@ import android.widget.EditText;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
-import com.avos.avoscloud.SignUpCallback;
 import com.penner.android.base.BaseActivity;
-import com.penner.android.utils.PennerUitls;
+import com.penner.android.utils.PennerUtils;
 
 public class LoginActivity extends BaseActivity {
 
@@ -30,9 +29,6 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        getToolbar().setTitle(getString(R.string.login));
-        setupToolbar();
 
         mNameLyout = (TextInputLayout)findViewById(R.id.login_layout_name);
         mPasswordLayout = (TextInputLayout)findViewById(R.id.login_layout_pwd);
@@ -60,7 +56,7 @@ public class LoginActivity extends BaseActivity {
                 }
                 mNameEdit.setError(null);
                 mPasswordEdit.setError(null);
-                PennerUitls.hideKeyboard(LoginActivity.this);
+                PennerUtils.hideKeyboard(LoginActivity.this);
 
                 dialog.setMessage(getString(R.string.logining));
                 dialog.show();
@@ -78,6 +74,11 @@ public class LoginActivity extends BaseActivity {
                 });
             }
         });
+    }
+
+    @Override
+    protected String getToolbarTitle() {
+        return getString(R.string.login);
     }
 
     private class LoginTextWatcher implements TextWatcher {

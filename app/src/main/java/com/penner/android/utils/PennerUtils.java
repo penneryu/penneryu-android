@@ -9,7 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 /**
  * Created by PennerYu on 15/10/10.
  */
-public final class PennerUitls {
+public final class PennerUtils {
 
     public static int dpToPx(int dp) {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);

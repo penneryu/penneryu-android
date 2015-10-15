@@ -19,7 +19,7 @@ import com.penner.android.kotlin.KotlinActivity
 class RecyclerAdapter(var context: Context, var list: List<String>) : RecyclerView.Adapter<RecyclerAdapter.CellViewHodler>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CellViewHodler? {
-        var view = LayoutInflater.from(context).inflate(R.layout.main_recycler_item, parent, false);
+        var view = LayoutInflater.from(context).inflate(R.layout.penner_recycler_item, parent, false);
         var viewHolder = CellViewHodler(view)
         return viewHolder
     }
@@ -49,7 +49,7 @@ class RecyclerAdapter(var context: Context, var list: List<String>) : RecyclerVi
         var title: TextView? = null
 
         constructor(itemView: View) : super(itemView) {
-            title = itemView.findViewById(R.id.main_recycler_txt_tile) as TextView;
+            title = itemView.findViewById(R.id.penner_recycler_txt_tile) as TextView;
         }
     }
 }

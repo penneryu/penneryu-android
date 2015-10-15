@@ -8,6 +8,7 @@
     <dimen name="penner_itemsize">52dp</dimen>
     <dimen name="penner_itempadding">12dp</dimen>
     <dimen name="penner_title">16sp</dimen>
+    <dimen name="penner_subtitle">14sp</dimen>
 
     <dimen name="penner_tab_txtsize">12sp</dimen>
 
