@@ -15,4 +15,7 @@
     <string name="bottom_tab_contract">通讯录</string>
     <string name="bottom_tab_file">文件</string>
     <string name="bottom_tab_profile">我的</string>
+    
+    <string name="service_local_start">本地服务开启</string>
+    <string name="service_local_cancel">本地服务已取消</string>
 </resources>

@@ -7,10 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.penner.android.BottomTabActivity
-import com.penner.android.FrescoActivity
-import com.penner.android.LoginActivity
-import com.penner.android.R
+import com.penner.android.*
 import com.penner.android.kotlin.KotlinActivity
 
 /**
@@ -36,6 +33,8 @@ class RecyclerAdapter(var context: Context, var list: List<String>) : RecyclerVi
                 context.startActivity(Intent(context, LoginActivity::class.java))
             } else if (position == 3) {
                 context.startActivity(Intent(context, BottomTabActivity::class.java))
+            } else if (position == 4) {
+                context.startActivity(Intent(context, ServiceActivity::class.java))
             }
         })
     }

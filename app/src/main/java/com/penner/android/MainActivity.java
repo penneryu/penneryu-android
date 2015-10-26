@@ -41,6 +41,7 @@ public class MainActivity extends BaseActivity {
         list.add("Kotlin");
         list.add("LeanCloud");
         list.add("BottomTab");
+        list.add("Service");
         recyclerView.setAdapter(new RecyclerAdapter(this, list));
     }
 

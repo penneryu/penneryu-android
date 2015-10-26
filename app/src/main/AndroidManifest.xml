@@ -30,6 +30,10 @@
         </activity>
         <activity android:name=".view.bottomtab.penner.DatabindingActivity" >
         </activity>
+        <activity android:name=".ServiceActivity" >
+        </activity>
+
+        <service android:name=".model.service.LocalService"/>
     </application>
 
 </manifest>

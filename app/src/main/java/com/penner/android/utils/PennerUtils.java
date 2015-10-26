@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -21,6 +24,14 @@ public final class PennerUtils {
     public static int sp2px(Context context, float value) {
         float scale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int)(value * scale + 0.5F);
+    }
+
+    public static void showSnackbar(View view, int resId) {
+        Snackbar.make(view, resId, Snackbar.LENGTH_LONG).show();
+    }
+
+    public static void showToast(Context context, int resId) {
+        Toast.makeText(context, resId, Toast.LENGTH_LONG).show();
     }
 
     public static void hideKeyboard(Activity activity) {
@@ -43,7 +54,10 @@ public final class PennerUtils {
                 cache = new File(path);
             }
             if (!cache.exists()) {
-                cache.mkdir();
+                boolean canMake = cache.mkdir();
+                if (!canMake) {
+                    return context.getCacheDir();
+                }
             }
             return cache;
         } else {
