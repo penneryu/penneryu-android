@@ -2,27 +2,30 @@ package com.penner.android;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.penner.android.base.BaseActivity;
-import com.penner.android.kotlin.model.main.RecyclerAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.penner.android.model.main.ViewPagerAdapter;
+import com.penner.android.view.main.PennerFragment;
 
 public class MainActivity extends BaseActivity {
+
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_menu);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -33,16 +36,26 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.main_recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.main_drawer_layout);
+        NavigationView navigationView = (NavigationView)findViewById(R.id.main_nav_view);
+        ViewPager viewPager = (ViewPager)findViewById(R.id.main_viewpager);
+        TabLayout tabLayout = (TabLayout)findViewById(R.id.tabs);
 
-        List<String> list = new ArrayList<String>();
-        list.add("Fresco");
-        list.add("Kotlin");
-        list.add("LeanCloud");
-        list.add("BottomTab");
-        list.add("Service");
-        recyclerView.setAdapter(new RecyclerAdapter(this, list));
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new PennerFragment(), "Penner1");
+        adapter.addFragment(new PennerFragment(), "Penner2");
+        adapter.addFragment(new PennerFragment(), "Penner3");
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                menuItem.setChecked(true);
+                mDrawerLayout.closeDrawers();
+                return true;
+            }
+        });
     }
 
     @Override
@@ -61,6 +74,9 @@ public class MainActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        } else if (id == android.R.id.home) {
+            mDrawerLayout.openDrawer(GravityCompat.START);
             return true;
         }
 

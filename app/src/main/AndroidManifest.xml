@@ -33,7 +33,12 @@
         <activity android:name=".ServiceActivity" >
         </activity>
 
-        <service android:name=".model.service.LocalService"/>
+        <service android:name=".model.service.LocalService" />
+
+        <activity android:name=".MaterialActivity" >
+        </activity>
+        <activity android:name=".view.material.MaterialDetailActivity" >
+        </activity>
     </application>
 
 </manifest>

@@ -12,4 +12,6 @@
 
     <dimen name="penner_tab_txtsize">12sp</dimen>
 
+    <dimen name="card_margin">16dp</dimen>
+
 </resources>

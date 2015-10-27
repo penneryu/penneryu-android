@@ -35,6 +35,8 @@ class RecyclerAdapter(var context: Context, var list: List<String>) : RecyclerVi
                 context.startActivity(Intent(context, BottomTabActivity::class.java))
             } else if (position == 4) {
                 context.startActivity(Intent(context, ServiceActivity::class.java))
+            } else if (position == 5) {
+                context.startActivity(Intent(context, MaterialActivity::class.java))
             }
         })
     }
