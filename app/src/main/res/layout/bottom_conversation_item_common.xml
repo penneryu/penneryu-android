@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_cov_common_root"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:background="@drawable/penner_btn_txt"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:id="@+id/home_cov_common_reavatar"
+        android:layout_width="72dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true" >
+
+        <ImageView
+            android:id="@+id/home_cov_common_avatar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/default_useravatar" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/home_cov_common_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@id/home_cov_common_reavatar"
+        android:layout_toEndOf="@id/home_cov_common_reavatar"
+        android:textColor="@color/penner_title"
+        android:textSize="@dimen/penner_title" />
+
+    <TextView
+        android:id="@+id/home_cov_common_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="12dp"
+        android:textColor="@color/penner_subtitle"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:layout_toRightOf="@id/home_cov_common_reavatar"
+        android:layout_toEndOf="@id/home_cov_common_reavatar"
+        android:orientation="horizontal"
+        android:paddingRight="30dp"
+        android:paddingEnd="30dp">
+
+        <ImageView
+            android:id="@+id/home_cov_common_msgstate"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/chat_msg_state_fail_resend"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/home_cov_common_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/penner_subtitle"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/home_cov_common_unread"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignRight="@id/home_cov_common_reavatar"
+        android:layout_alignTop="@id/home_cov_common_reavatar"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="3dp"
+        android:background="@mipmap/penner_tab_item_unread"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+
+</RelativeLayout>

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.penner.android.data.bottomtab.LocalConversationFactory;
+import com.penner.android.data.bottomtab.LocalMessageFactory;
+
 /**
  * Created by PennerYu on 15/10/13.
  */
@@ -18,6 +21,8 @@ public class LocalOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        LocalConversationFactory.createTable(db);
+        LocalMessageFactory.createTable(db);
     }
 
     @Override

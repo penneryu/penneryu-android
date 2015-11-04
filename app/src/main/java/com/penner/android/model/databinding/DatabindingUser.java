@@ -1,4 +1,4 @@
-package com.penner.android.model.bottomtab.penner;
+package com.penner.android.model.databinding;
 
 /**
  * Created by PennerYu on 15/10/15.

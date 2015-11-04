@@ -28,17 +28,20 @@
         </activity>
         <activity android:name=".BottomTabActivity" >
         </activity>
-        <activity android:name=".view.bottomtab.penner.DatabindingActivity" >
+        <activity android:name=".DatabindingActivity" >
         </activity>
         <activity android:name=".ServiceActivity" >
         </activity>
-
-        <service android:name=".model.service.LocalService" />
-
         <activity android:name=".MaterialActivity" >
         </activity>
         <activity android:name=".view.material.MaterialDetailActivity" >
         </activity>
+        <activity android:name=".LargeImageActivity" >
+        </activity>
+        <activity android:name=".view.bottomtab.ChatActivity" >
+        </activity>
+
+        <service android:name=".model.service.LocalService" />
     </application>
 
 </manifest>

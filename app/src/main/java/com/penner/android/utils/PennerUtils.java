@@ -64,4 +64,21 @@ public final class PennerUtils {
             return context.getCacheDir();
         }
     }
+
+    public static File getCameraFile() {
+        File directory = new File(Environment.getExternalStorageDirectory() + "/penner_android/cameras/");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        return new File(directory, System.currentTimeMillis() + ".jpg");
+    }
+
+    public static boolean isExitsSdcard() {
+        if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

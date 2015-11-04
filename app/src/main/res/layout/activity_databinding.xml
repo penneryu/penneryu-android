@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.penner.android.view.bottomtab.penner.DatabindingActivity">
+    tools:context="com.penner.android.DatabindingActivity">
 
     <data>
-        <variable name="user" type="com.penner.android.model.bottomtab.penner.DatabindingUser"/>
+        <variable name="user" type="com.penner.android.model.databinding.DatabindingUser"/>
     </data>
 
     <LinearLayout

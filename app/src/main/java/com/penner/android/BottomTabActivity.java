@@ -40,7 +40,7 @@ public class BottomTabActivity extends BaseActivity {
 
     @Override
     protected String getToolbarTitle() {
-        return "BottomTabActivity";
+        return "PennerYu";
     }
 
     private void initTabs() {

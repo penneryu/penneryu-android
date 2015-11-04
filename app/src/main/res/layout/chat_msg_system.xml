@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.penner.android.view.bottomtab.penner.chat.SystemMessageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/chat_msg_paddingtop">
+
+    <TextView
+        android:id="@+id/chat_msg_timestamp"
+        style="@style/chat_text_date_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/chat_msg_content"
+        style="@style/chat_text_date_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/chat_margin_activity" />
+
+</com.penner.android.view.bottomtab.penner.chat.SystemMessageView>

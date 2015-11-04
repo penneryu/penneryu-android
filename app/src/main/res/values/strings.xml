@@ -18,4 +18,22 @@
     
     <string name="service_local_start">本地服务开启</string>
     <string name="service_local_cancel">本地服务已取消</string>
+
+    <string name="chat_btn_pushtotalk">按住说话</string>
+    <string name="chat_btn_send">发送</string>
+    <string name="chat_take_pic">拍照</string>
+    <string name="chat_picture">图片</string>
+    <string name="chat_location">位置</string>
+    <string name="chat_video">视频</string>
+    <string name="chat_file">文件</string>
+    <string name="chat_voice">语音电话</string>
+    <string name="chat_move_up_to_cancel">手指上滑，取消发送</string>
+    <string name="chat_ack_msg">已读</string>
+    <string name="chat_delivered_msg">送达</string>
+    <string name="chat_not_takepic">SD卡不存在，不能拍照</string>
+    <string name="chat_not_picture">找不到图片</string>
+    <string name="chat_picture_tips">0%</string>
+    <string name="chat_personal">个人资料</string>
+
+    <string name="channelinfo">频道详情</string>
 </resources>

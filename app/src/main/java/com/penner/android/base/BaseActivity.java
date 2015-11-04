@@ -34,6 +34,14 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    protected void setupToolbarWithoutTitle() {
+        mToolbar = (Toolbar) findViewById(R.id.penner_toolbar);
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     public Toolbar getToolbar() {
         return mToolbar;
     }

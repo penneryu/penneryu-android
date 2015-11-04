@@ -13,4 +13,6 @@ public final class Constants {
     public static final int MAX_MEMORY_CACHE_SIZE = MAX_HEAP_SIZE / 4;
 
     public static final String IMAGE_PIPELINE_CACHE_DIR = "imagepipeline_cache";
+
+    public final static String CONVINFO_EXTRA = "convinfo";
 }

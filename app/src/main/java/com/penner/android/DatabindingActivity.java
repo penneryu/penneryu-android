@@ -1,12 +1,11 @@
-package com.penner.android.view.bottomtab.penner;
+package com.penner.android;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
-import com.penner.android.R;
 import com.penner.android.base.BaseActivity;
 import com.penner.android.databinding.ActivityDatabindingBinding;
-import com.penner.android.model.bottomtab.penner.DatabindingUser;
+import com.penner.android.model.databinding.DatabindingUser;
 
 public class DatabindingActivity extends BaseActivity {
 

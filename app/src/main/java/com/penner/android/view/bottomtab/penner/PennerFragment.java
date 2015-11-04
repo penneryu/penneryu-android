@@ -10,9 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.penner.android.R;
+import com.penner.android.data.bottomtab.ConversationInfo;
+import com.penner.android.data.bottomtab.LocalConversationFactory;
 import com.penner.android.model.bottomtab.penner.RecyclerAdapter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,8 +39,31 @@ public class PennerFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView)getView().findViewById(R.id.bootom_penner_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        List<String> list = new ArrayList<>();
-        list.add("Data Binding");
-        recyclerView.setAdapter(new RecyclerAdapter(getActivity(), list));
+
+        LocalConversationFactory factory = new LocalConversationFactory(getActivity());
+        List<ConversationInfo> conversationInfos = factory.findRecords();
+
+        if (conversationInfos.size() <= 0) {
+            ConversationInfo info1 = new ConversationInfo();
+            info1.userId = "1";
+            info1.userName = "PennerYu";
+            info1.time = System.currentTimeMillis();
+            info1.rank = System.currentTimeMillis();
+            info1.messageTips = "Hello World!";
+
+            ConversationInfo info2 = new ConversationInfo();
+            info2.unreadCount = 1;
+            info2.userId = "2";
+            info2.userName = "PengYu";
+            info2.time = System.currentTimeMillis();
+            info2.rank = System.currentTimeMillis();
+            info2.messageTips = "Hello World! Hello World! Hello World! Hello World!";
+
+            conversationInfos.add(info1);
+            conversationInfos.add(info2);
+            factory.insertRecord(conversationInfos);
+        }
+
+        recyclerView.setAdapter(new RecyclerAdapter(getActivity(), conversationInfos));
     }
 }
