@@ -42,6 +42,9 @@
         </activity>
 
         <service android:name=".model.service.LocalService" />
+
+        <activity android:name=".ScaleGestureActivity" >
+        </activity>
     </application>
 
 </manifest>

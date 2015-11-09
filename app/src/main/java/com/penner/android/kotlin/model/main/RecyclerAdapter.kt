@@ -41,6 +41,8 @@ class RecyclerAdapter(var context: Context, var list: List<String>) : RecyclerVi
                 context.startActivity(Intent(context, DatabindingActivity::class.java))
             } else if (position == 7) {
                 context.startActivity(Intent(context, LargeImageActivity::class.java))
+            } else if (position == 8) {
+                context.startActivity(Intent(context, ScaleGestureActivity::class.java))
             }
         })
     }

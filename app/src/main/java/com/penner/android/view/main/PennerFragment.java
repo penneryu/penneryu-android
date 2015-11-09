@@ -35,6 +35,7 @@ public class PennerFragment extends Fragment {
         list.add("Material");
         list.add("DataBinding");
         list.add("LargeImage");
+        list.add("SurfaceView");
         recyclerView.setAdapter(new RecyclerAdapter(getContext(), list));
         return recyclerView;
     }
