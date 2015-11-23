@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.newrelic.agent.android.NewRelic;
 import com.penner.android.base.BaseActivity;
 import com.penner.android.model.main.ViewPagerAdapter;
 import com.penner.android.view.main.PennerFragment;
@@ -24,6 +25,10 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        NewRelic.withApplicationToken(
+                "AA42071ed4924fbe1c589716303352c0aa7135b860"
+        ).start(this.getApplication());
 
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_menu);
 

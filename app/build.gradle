@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.android.databinding'
+apply plugin: 'newrelic'
 
 android {
     compileSdkVersion 23
@@ -12,6 +13,9 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        ndk {
+            moduleName "pennerNDK"
+        }
     }
     buildTypes {
         release {
@@ -45,6 +49,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.jakewharton:butterknife:6.1.0'
     compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
+    compile 'com.newrelic.agent.android:android-agent:5.+'
 }
 buildscript {
     ext.kotlin_version = '0.14.451'
@@ -53,6 +58,7 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.newrelic.agent.android:agent-gradle-plugin:5.+"
     }
 }
 repositories {
