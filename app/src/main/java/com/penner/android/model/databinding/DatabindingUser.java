@@ -5,8 +5,8 @@ package com.penner.android.model.databinding;
  */
 public class DatabindingUser {
 
-    private String firstName;
-    private String lastName;
+    private final String firstName;
+    private final String lastName;
 
     public DatabindingUser(String firstName, String lastName) {
         this.firstName = firstName;
