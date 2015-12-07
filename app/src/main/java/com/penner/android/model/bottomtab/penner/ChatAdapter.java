@@ -1,6 +1,7 @@
 package com.penner.android.model.bottomtab.penner;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +17,8 @@ import com.penner.android.view.bottomtab.penner.chat.BaseMessageView;
 
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.Optional;
 
 /**
  * Created by PennerYu on 15/11/4.
@@ -97,26 +97,26 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHodler
     }
 
     public static class ChatViewHodler extends RecyclerView.ViewHolder {
-        @Optional
-        @InjectView(R.id.chat_msg_sending)
+        @Nullable
+        @Bind(R.id.chat_msg_sending)
         public ProgressBar pb;
-        @Optional
-        @InjectView(R.id.chat_msg_status)
+        @Nullable
+        @Bind(R.id.chat_msg_status)
         public ImageView staus;
-        @Optional
-        @InjectView(R.id.chat_msg_userid)
+        @Nullable
+        @Bind(R.id.chat_msg_userid)
         public TextView userId;
 
-        @InjectView(R.id.chat_msg_userhead)
+        @Bind(R.id.chat_msg_userhead)
         public ImageView head;
-        @InjectView(R.id.chat_msg_timestamp)
+        @Bind(R.id.chat_msg_timestamp)
         public TextView timestamp;
-        @InjectView(R.id.chat_msg_content)
+        @Bind(R.id.chat_msg_content)
         public View content;
 
         public ChatViewHodler(View itemView) {
             super(itemView);
-            ButterKnife.inject(this, itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

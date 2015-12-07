@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import com.penner.android.R;
 import com.penner.android.view.material.MaterialDetailActivity;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by PennerYu on 15/10/27.
@@ -50,13 +50,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellVi
 
     public class CellViewHodler extends RecyclerView.ViewHolder {
 
-        @InjectView(R.id.material_avatar)
+        @Bind(R.id.material_avatar)
         ImageView imageView;
 
         public CellViewHodler(View itemView) {
             super(itemView);
 
-            ButterKnife.inject(itemView);
+            ButterKnife.bind(itemView);
         }
     }
 }

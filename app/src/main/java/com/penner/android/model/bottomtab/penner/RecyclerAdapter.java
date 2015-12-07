@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.penner.android.R;
-import com.penner.android.DatabindingActivity;
 import com.penner.android.data.bottomtab.ConversationInfo;
 import com.penner.android.utils.Constants;
 import com.penner.android.utils.DateUtils;
@@ -21,8 +20,8 @@ import com.penner.android.view.bottomtab.ChatActivity;
 import java.util.Date;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by PennerYu on 15/10/15.
@@ -81,25 +80,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recyle
 
     class RecylerViewHodler extends RecyclerView.ViewHolder {
 
-        @InjectView(R.id.home_cov_common_root)
+        @Bind(R.id.home_cov_common_root)
         View root;
-        @InjectView(R.id.home_cov_common_name)
+        @Bind(R.id.home_cov_common_name)
         TextView name;
-        @InjectView(R.id.home_cov_common_unread)
+        @Bind(R.id.home_cov_common_unread)
         TextView unread;
-        @InjectView(R.id.home_cov_common_content)
+        @Bind(R.id.home_cov_common_content)
         TextView content;
-        @InjectView(R.id.home_cov_common_time)
+        @Bind(R.id.home_cov_common_time)
         TextView time;
-        @InjectView(R.id.home_cov_common_msgstate)
+        @Bind(R.id.home_cov_common_msgstate)
         ImageView state;
-        @InjectView(R.id.home_cov_common_avatar)
+        @Bind(R.id.home_cov_common_avatar)
         ImageView avatar;
 
         public RecylerViewHodler(View itemView) {
             super(itemView);
 
-            ButterKnife.inject(this, itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

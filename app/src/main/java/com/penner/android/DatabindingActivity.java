@@ -1,7 +1,7 @@
 package com.penner.android;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 
 import com.penner.android.base.BaseActivity;
 import com.penner.android.databinding.ActivityDatabindingBinding;
@@ -13,7 +13,7 @@ public class DatabindingActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityDatabindingBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_databinding);
+        ActivityDatabindingBinding binding = ActivityDatabindingBinding.inflate(LayoutInflater.from(this));
         DatabindingUser user = new DatabindingUser("Penenr", "Yu");
         binding.setUser(user);
 

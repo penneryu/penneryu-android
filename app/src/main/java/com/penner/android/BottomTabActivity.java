@@ -6,11 +6,18 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.penner.android.base.BaseActivity;
+import com.penner.android.utils.LogUtils;
 import com.penner.android.view.bottomtab.BottomTabItemView;
 import com.penner.android.view.bottomtab.contact.ContactFragment;
 import com.penner.android.view.bottomtab.files.FilesFragment;
 import com.penner.android.view.bottomtab.penner.PennerFragment;
 import com.penner.android.view.bottomtab.profile.ProfileFragment;
+
+import java.net.URISyntaxException;
+
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 public class BottomTabActivity extends BaseActivity {
 
@@ -29,6 +36,19 @@ public class BottomTabActivity extends BaseActivity {
     private BottomTabItemView[] mTabItems;
     private Fragment[] mFragments;
 
+//    private Socket mSocket; {
+//        try {
+//            IO.Options opts = new IO.Options();
+//            opts.path = "/io";
+//            opts.forceNew = true;
+//            opts.reconnection = true;
+//
+//            mSocket = IO.socket("https://s.pubu.im", opts);
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +56,22 @@ public class BottomTabActivity extends BaseActivity {
 
         initTabs();
         initContents();
+
+//        mSocket.connect();
+//        mSocket.on("io:msg", new Emitter.Listener() {
+//            @Override
+//            public void call(Object... args) {
+//                LogUtils.d("io:msg", args[0].toString());
+//            }
+//        });
+//
+//        mSocket.emit("io:uid", "pubuim", "CKNW45Aypmfmv5/eRWv1DKnQ80YzMLLekqV5Orax218h1J1Ia+URB1VvHHRwSt/0fk/Pk3mqOUNIU7l1RDcZh5F9YytI7SPLEiVQqnRUceJxEGVYoVXpY+MfHlBABX8PAjdPOOtv6jGXkjqCl5J0aOQQnJvSd5FbS0nsk3DDoLI/n88f2ZtBBBekE/qB/MWu0AXVPetYcBcOcj15FtzQUg==");
+//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/messages|child.create");
+//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/messages|child.update");
+//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/messages|child.delete");
+//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/channels|child.create");
+//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/channels|child.update");
+//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/channels|child.delete");
     }
 
     @Override
