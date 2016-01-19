@@ -39,46 +39,38 @@ public class LoginActivity extends BaseActivity {
         final ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
 
         mPasswordEdit.addTextChangedListener(new LoginTextWatcher(mPasswordLayout, getString(R.string.login_pwd_tips2)));
-        mLoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = mNameEdit.getText().toString();
-                String pwd = mPasswordEdit.getText().toString();
-                if (TextUtils.isEmpty(name)) {
-                    mNameEdit.setError(getString(R.string.login_name_tips));
-                    mNameEdit.requestFocus();
-                    return;
-                }
-                if (TextUtils.isEmpty(pwd)) {
-                    mPasswordEdit.setError(getString(R.string.login_pwd_tips));
-                    mPasswordEdit.requestFocus();
-                    return;
-                }
-                mNameEdit.setError(null);
-                mPasswordEdit.setError(null);
-                PennerUtils.hideKeyboard(LoginActivity.this);
-
-                dialog.setMessage(getString(R.string.logining));
-                dialog.show();
-
-                AVUser.logInInBackground(name, pwd, new LogInCallback<AVUser>() {
-                    @Override
-                    public void done(AVUser avUser, AVException e) {
-                        dialog.dismiss();
-                        if (avUser != null) {
-                            Snackbar.make(mLoginBtn, getString(R.string.login_sucess), Snackbar.LENGTH_LONG).show();
-                        } else {
-                            Snackbar.make(mLoginBtn, e.getMessage(), Snackbar.LENGTH_LONG).show();
-                        }
-                    }
-                });
+        mLoginBtn.setOnClickListener(v -> {
+            String name = mNameEdit.getText().toString();
+            String pwd = mPasswordEdit.getText().toString();
+            if (TextUtils.isEmpty(name)) {
+                mNameEdit.setError(getString(R.string.login_name_tips));
+                mNameEdit.requestFocus();
+                return;
             }
-        });
-    }
+            if (TextUtils.isEmpty(pwd)) {
+                mPasswordEdit.setError(getString(R.string.login_pwd_tips));
+                mPasswordEdit.requestFocus();
+                return;
+            }
+            mNameEdit.setError(null);
+            mPasswordEdit.setError(null);
+            PennerUtils.hideKeyboard(LoginActivity.this);
 
-    @Override
-    protected String getToolbarTitle() {
-        return getString(R.string.login);
+            dialog.setMessage(getString(R.string.logining));
+            dialog.show();
+
+            AVUser.logInInBackground(name, pwd, new LogInCallback<AVUser>() {
+                @Override
+                public void done(AVUser avUser, AVException e) {
+                    dialog.dismiss();
+                    if (avUser != null) {
+                        Snackbar.make(mLoginBtn, getString(R.string.login_sucess), Snackbar.LENGTH_LONG).show();
+                    } else {
+                        Snackbar.make(mLoginBtn, e.getMessage(), Snackbar.LENGTH_LONG).show();
+                    }
+                }
+            });
+        });
     }
 
     private class LoginTextWatcher implements TextWatcher {

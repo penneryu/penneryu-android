@@ -44,58 +44,43 @@ public class FrescoActivity extends BaseActivity {
         draweeView.setImageURI(Uri.parse("http://img.vision.pptv.com/images/1c/f8/1cf8b6806829e5ffcd958f2da5f436ba7e936e55.jpeg"));
 
         final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.test);
-        faletteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
-                    @Override
-                    public void onGenerated(Palette palette) {
-                        Palette.Swatch swatch = palette.getVibrantSwatch();
-                        if (swatch != null) {
-                            vibrantView.setBackgroundColor(swatch.getRgb());
-                        }
-                        swatch = palette.getDarkVibrantSwatch();
-                        if (swatch != null) {
-                            vibrantDrakView.setBackgroundColor(swatch.getRgb());
-                        }
-                        swatch = palette.getLightVibrantSwatch();
-                        if (swatch != null) {
-                            vibrantLightView.setBackgroundColor(swatch.getRgb());
-                        }
-                        swatch = palette.getMutedSwatch();
-                        if (swatch != null) {
-                            muteView.setBackgroundColor(swatch.getRgb());
-                        }
-                        swatch = palette.getDarkMutedSwatch();
-                        if (swatch != null) {
-                            muteDarkView.setBackgroundColor(swatch.getRgb());
-                        }
-                        swatch = palette.getLightMutedSwatch();
-                        if (swatch != null) {
-                            muteLightView.setBackgroundColor(swatch.getRgb());
-                        }
-                    }
-                });
-
-                Palette.Builder builder = new Palette.Builder(bitmap);
-                builder.maximumColorCount(1);
-                builder.generate(new Palette.PaletteAsyncListener() {
-                    @Override
-                    public void onGenerated(Palette palette) {
-                        Palette.Swatch swatch = palette.getSwatches().get(0);
-                        if (swatch != null) {
-                            singleView.setBackgroundColor(swatch.getRgb());
-                        } else {
-                            Log.e("falette", "swatch is null");
-                        }
-                    }
-                });
-            }
+        faletteBtn.setOnClickListener(v -> {
+            Palette.from(bitmap).generate(palette -> {
+                Palette.Swatch swatch = palette.getVibrantSwatch();
+                if (swatch != null) {
+                    vibrantView.setBackgroundColor(swatch.getRgb());
+                }
+                swatch = palette.getDarkVibrantSwatch();
+                if (swatch != null) {
+                    vibrantDrakView.setBackgroundColor(swatch.getRgb());
+                }
+                swatch = palette.getLightVibrantSwatch();
+                if (swatch != null) {
+                    vibrantLightView.setBackgroundColor(swatch.getRgb());
+                }
+                swatch = palette.getMutedSwatch();
+                if (swatch != null) {
+                    muteView.setBackgroundColor(swatch.getRgb());
+                }
+                swatch = palette.getDarkMutedSwatch();
+                if (swatch != null) {
+                    muteDarkView.setBackgroundColor(swatch.getRgb());
+                }
+                swatch = palette.getLightMutedSwatch();
+                if (swatch != null) {
+                    muteLightView.setBackgroundColor(swatch.getRgb());
+                }
+            });
+            Palette.Builder builder = new Palette.Builder(bitmap);
+            builder.maximumColorCount(1);
+            builder.generate(palette -> {
+                Palette.Swatch swatch = palette.getSwatches().get(0);
+                if (swatch != null) {
+                    singleView.setBackgroundColor(swatch.getRgb());
+                } else {
+                    Log.e("falette", "swatch is null");
+                }
+            });
         });
-    }
-
-    @Override
-    protected String getToolbarTitle() {
-        return "Fresco";
     }
 }

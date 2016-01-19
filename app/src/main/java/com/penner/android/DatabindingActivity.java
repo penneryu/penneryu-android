@@ -19,9 +19,4 @@ public class DatabindingActivity extends BaseActivity {
 
         setupToolbar();
     }
-
-    @Override
-    protected String getToolbarTitle() {
-        return "Data Binding";
-    }
 }

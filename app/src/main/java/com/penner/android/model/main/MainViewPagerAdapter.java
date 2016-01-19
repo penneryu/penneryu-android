@@ -10,12 +10,12 @@ import java.util.List;
 /**
  * Created by PennerYu on 15/10/27.
  */
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
     private final List<Fragment> mFragments = new ArrayList<>();
     private final List<String> mFragmentTitles = new ArrayList<>();
 
-    public ViewPagerAdapter(FragmentManager fm) {
+    public MainViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

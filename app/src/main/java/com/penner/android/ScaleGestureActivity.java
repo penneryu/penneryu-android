@@ -23,11 +23,6 @@ public class ScaleGestureActivity extends BaseActivity {
     private ScaleGestureDetector mScaleDetetor;
 
     @Override
-    protected String getToolbarTitle() {
-        return "SurfaceView";
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scale_gesture);

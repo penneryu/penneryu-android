@@ -6,18 +6,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.penner.android.base.BaseActivity;
-import com.penner.android.utils.LogUtils;
+import com.penner.android.utils.PennerUtils;
 import com.penner.android.view.bottomtab.BottomTabItemView;
 import com.penner.android.view.bottomtab.contact.ContactFragment;
 import com.penner.android.view.bottomtab.files.FilesFragment;
 import com.penner.android.view.bottomtab.penner.PennerFragment;
 import com.penner.android.view.bottomtab.profile.ProfileFragment;
-
-import java.net.URISyntaxException;
-
-import io.socket.client.IO;
-import io.socket.client.Socket;
-import io.socket.emitter.Emitter;
 
 public class BottomTabActivity extends BaseActivity {
 
@@ -36,47 +30,17 @@ public class BottomTabActivity extends BaseActivity {
     private BottomTabItemView[] mTabItems;
     private Fragment[] mFragments;
 
-//    private Socket mSocket; {
-//        try {
-//            IO.Options opts = new IO.Options();
-//            opts.path = "/io";
-//            opts.forceNew = true;
-//            opts.reconnection = true;
-//
-//            mSocket = IO.socket("https://s.pubu.im", opts);
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bottom_tab);
 
+        if (savedInstanceState != null) {
+            mTabCurrentIndex = savedInstanceState.getInt("tabindex", 0);
+        }
+
         initTabs();
         initContents();
-
-//        mSocket.connect();
-//        mSocket.on("io:msg", new Emitter.Listener() {
-//            @Override
-//            public void call(Object... args) {
-//                LogUtils.d("io:msg", args[0].toString());
-//            }
-//        });
-//
-//        mSocket.emit("io:uid", "pubuim", "CKNW45Aypmfmv5/eRWv1DKnQ80YzMLLekqV5Orax218h1J1Ia+URB1VvHHRwSt/0fk/Pk3mqOUNIU7l1RDcZh5F9YytI7SPLEiVQqnRUceJxEGVYoVXpY+MfHlBABX8PAjdPOOtv6jGXkjqCl5J0aOQQnJvSd5FbS0nsk3DDoLI/n88f2ZtBBBekE/qB/MWu0AXVPetYcBcOcj15FtzQUg==");
-//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/messages|child.create");
-//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/messages|child.update");
-//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/messages|child.delete");
-//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/channels|child.create");
-//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/channels|child.update");
-//        mSocket.emit("io:sub", "pubuim/T54b8dbd43fc0cc701da0925c/channels|child.delete");
-    }
-
-    @Override
-    protected String getToolbarTitle() {
-        return "PennerYu";
     }
 
     private void initTabs() {
@@ -102,7 +66,7 @@ public class BottomTabActivity extends BaseActivity {
         mProfileTabItem.setOnClickListener(listener);
 
         mTabItems = new BottomTabItemView[] {mPubuTabItem, mContactTabItem, mFilesTabItem, mProfileTabItem};
-        mTabItems[0].setSelected(true);
+        mTabItems[mTabCurrentIndex].setSelected(true);
     }
 
     private void initContents() {
@@ -111,15 +75,11 @@ public class BottomTabActivity extends BaseActivity {
         mFilesFragment = new FilesFragment();
         mProfileFragment = new ProfileFragment();
 
-        mFragments = new Fragment[] {mPennerFragment, mContactFragment, mFilesFragment, mProfileFragment};
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.bottom_tab_fragment, mPennerFragment)
-                .add(R.id.bottom_tab_fragment, mContactFragment)
-                .add(R.id.bottom_tab_fragment, mFilesFragment)
-                .add(R.id.bottom_tab_fragment, mProfileFragment)
-                .show(mPennerFragment)
-                .hide(mContactFragment).hide(mFilesFragment).hide(mProfileFragment)
-                .commit();
+        mFragments = new Fragment[] {
+                mPennerFragment,
+                mContactFragment,
+                mFilesFragment, mProfileFragment};
+        showFragment(mTabCurrentIndex);
     }
 
     private void onTabClicked(View view) {
@@ -138,16 +98,41 @@ public class BottomTabActivity extends BaseActivity {
                 index = 3;
                 break;
         }
-        if (mTabCurrentIndex != index) {
+        showFragment(index);
+    }
+
+    private void showFragment(int index) {
+        switch (index) {
+            case 0:
+                getToolbar().setTitle(getString(R.string.bottom_tab_penner));
+                break;
+            case 1:
+                getToolbar().setTitle(getString(R.string.bottom_tab_contract));
+                break;
+            case 2:
+                getToolbar().setTitle(getString(R.string.bottom_tab_file));
+                break;
+            case 3:
+                getToolbar().setTitle(getString(R.string.bottom_tab_profile));
+                break;
+        }
+        if (mTabCurrentIndex != index || !mFragments[index].isAdded()) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.hide(mFragments[mTabCurrentIndex]);
             if (!mFragments[index].isAdded()) {
                 fragmentTransaction.add(R.id.bottom_tab_fragment, mFragments[index]);
             }
-            fragmentTransaction.show(mFragments[index]).commit();
+            fragmentTransaction.show(mFragments[index]).commitAllowingStateLoss();
         }
         mTabItems[mTabCurrentIndex].setSelected(false);
         mTabItems[index].setSelected(true);
         mTabCurrentIndex = index;
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putInt("tabindex", mTabCurrentIndex);
     }
 }

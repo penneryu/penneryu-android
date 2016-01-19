@@ -14,8 +14,8 @@ import android.view.View;
 
 import com.newrelic.agent.android.NewRelic;
 import com.penner.android.base.BaseActivity;
-import com.penner.android.model.main.ViewPagerAdapter;
-import com.penner.android.view.main.PennerFragment;
+import com.penner.android.model.main.MainViewPagerAdapter;
+import com.penner.android.view.main.MainFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -25,6 +25,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setElevation(0);
 
         NewRelic.withApplicationToken(
                 "AA42071ed4924fbe1c589716303352c0aa7135b860"
@@ -46,10 +47,10 @@ public class MainActivity extends BaseActivity {
         ViewPager viewPager = (ViewPager)findViewById(R.id.main_viewpager);
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tabs);
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PennerFragment(), "Penner1");
-        adapter.addFragment(new PennerFragment(), "Penner2");
-        adapter.addFragment(new PennerFragment(), "Penner3");
+        MainViewPagerAdapter adapter = new MainViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new MainFragment(), "Penner1");
+        adapter.addFragment(new MainFragment(), "Penner2");
+        adapter.addFragment(new MainFragment(), "Penner3");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -65,19 +66,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         } else if (id == android.R.id.home) {

@@ -63,14 +63,9 @@ public class PennerApplication extends Application {
                 Integer.MAX_VALUE,                     // Max length of eviction queue
                 Integer.MAX_VALUE);                    // Max cache entry size
         configBuilder
-                .setBitmapMemoryCacheParamsSupplier(
-                        new Supplier<MemoryCacheParams>() {
-                            public MemoryCacheParams get() {
-                                return bitmapCacheParams;
-                            }
-                        })
+                .setBitmapMemoryCacheParamsSupplier(() -> bitmapCacheParams)
                 .setMainDiskCacheConfig(
-                        DiskCacheConfig.newBuilder()
+                        DiskCacheConfig.newBuilder(context)
                                 .setBaseDirectoryPath(PennerUtils.getImageCacheDirectory(context))
                                 .setBaseDirectoryName(Constants.IMAGE_PIPELINE_CACHE_DIR)
                                 .setMaxCacheSize(Constants.MAX_DISK_CACHE_SIZE)

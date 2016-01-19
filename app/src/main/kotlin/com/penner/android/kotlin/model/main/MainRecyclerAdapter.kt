@@ -13,7 +13,7 @@ import com.penner.android.kotlin.KotlinActivity
 /**
  * Created by PennerYu on 15/10/10.
  */
-class RecyclerAdapter(var context: Context, var list: List<String>) : RecyclerView.Adapter<RecyclerAdapter.CellViewHodler>() {
+class MainRecyclerAdapter(var context: Context, var list: List<String>) : RecyclerView.Adapter<MainRecyclerAdapter.CellViewHodler>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CellViewHodler? {
         var view = LayoutInflater.from(context).inflate(R.layout.penner_recycler_item, parent, false);
@@ -43,12 +43,14 @@ class RecyclerAdapter(var context: Context, var list: List<String>) : RecyclerVi
                 context.startActivity(Intent(context, LargeImageActivity::class.java))
             } else if (position == 8) {
                 context.startActivity(Intent(context, ScaleGestureActivity::class.java))
+            } else if (position == 9) {
+                context.startActivity(Intent(context, RxJavaActivity::class.java))
             }
         })
     }
 
     override fun getItemCount(): Int {
-        return list.size()
+        return list.size
     }
 
     class CellViewHodler : RecyclerView.ViewHolder {

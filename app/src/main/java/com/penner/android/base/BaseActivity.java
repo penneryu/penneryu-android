@@ -1,5 +1,6 @@
 package com.penner.android.base;
 
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -28,7 +29,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void setupToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.penner_toolbar);
         if (mToolbar != null) {
-            mToolbar.setTitle(getToolbarTitle());
             setSupportActionBar(mToolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -42,12 +42,14 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public Toolbar getToolbar() {
-        return mToolbar;
+    public void setElevation(float elevation) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mToolbar.setElevation(elevation);
+        }
     }
 
-    protected String getToolbarTitle() {
-        return getString(R.string.app_name);
+    public Toolbar getToolbar() {
+        return mToolbar;
     }
 
     @Override

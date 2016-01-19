@@ -13,7 +13,7 @@ import com.penner.android.utils.PennerUtils
 class StackViewAdapter(var context: Context, var colors: IntArray) : BaseAdapter() {
 
     override fun getCount(): Int {
-        return colors.size()
+        return colors.size
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {

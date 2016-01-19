@@ -18,11 +18,6 @@ public class ServiceActivity extends BaseActivity {
     private LocalService mLocalService;
 
     @Override
-    protected String getToolbarTitle() {
-        return "ServiceActivity";
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);

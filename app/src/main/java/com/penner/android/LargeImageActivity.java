@@ -11,11 +11,6 @@ import java.io.InputStream;
 public class LargeImageActivity extends BaseActivity {
 
     @Override
-    protected String getToolbarTitle() {
-        return "LargeImage";
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_large_image);

@@ -29,8 +29,4 @@ class KotlinActivity : BaseActivity() {
 
         stackview.adapter = StackViewAdapter(this, colors);
     }
-
-    override fun getToolbarTitle(): String {
-        return "Kotlin";
-    }
 }

@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.penner.android.R;
-import com.penner.android.kotlin.model.main.RecyclerAdapter;
+import com.penner.android.kotlin.model.main.MainRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by PennerYu on 15/10/27.
  */
-public class PennerFragment extends Fragment {
+public class MainFragment extends Fragment {
 
     @Nullable
     @Override
@@ -36,7 +36,8 @@ public class PennerFragment extends Fragment {
         list.add("DataBinding");
         list.add("LargeImage");
         list.add("SurfaceView");
-        recyclerView.setAdapter(new RecyclerAdapter(getContext(), list));
+        list.add("RxJava");
+        recyclerView.setAdapter(new MainRecyclerAdapter(getContext(), list));
         return recyclerView;
     }
 }

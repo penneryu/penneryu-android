@@ -14,11 +14,6 @@ public class MaterialActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
 
     @Override
-    protected String getToolbarTitle() {
-        return "Material";
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material);
