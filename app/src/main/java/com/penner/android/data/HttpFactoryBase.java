@@ -9,13 +9,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Map;
 
 /**
- * Created by PennerYu on 15/10/13.
+ * Created by penneryu on 15/8/22.
  */
 public abstract class HttpFactoryBase<T> {
 
@@ -66,14 +65,18 @@ public abstract class HttpFactoryBase<T> {
     }
 
     protected int getConnectTimeout() {
-        return 15000;
+        return 60000;
     }
 
     protected String getHttpType() {
         return "GET";
     }
 
-    protected Map<String, String> getPostArgs() {
+    protected Map<String, Object> getPostArgs() {
+        return null;
+    }
+
+    protected Map<String, String> getHttpHeads() {
         return null;
     }
 
@@ -94,6 +97,14 @@ public abstract class HttpFactoryBase<T> {
      */
     protected abstract T AnalysisContent(InputStream stream) throws IOException;
 
+    /**
+     * 服务器返回非200得到错误原因
+     * @param stream
+     * @throws IOException
+     */
+    protected void AnalysisError(InputStream stream) throws IOException {
+    }
+
     protected T doNetworkRequest(Object... params) {
         try {
             String uri = CreateUri(params);
@@ -104,29 +115,38 @@ public abstract class HttpFactoryBase<T> {
             mHttpConection.setConnectTimeout(getConnectTimeout());
 
             OutputStream os = null;
-            if ("GET".equals(getHttpType())) {
-                mHttpConection.setRequestMethod("GET");
+            if (getHttpHeads() != null) {
+                Iterator<Map.Entry<String, String>> iterator = getHttpHeads().entrySet().iterator();
+                while (iterator.hasNext()) {
+                    Map.Entry<String, String> param = iterator.next();
+                    String key = param.getKey();
+                    String value = param.getValue();
+                    mHttpConection.setRequestProperty(key, value);
+                }
+            }
+            mHttpConection.setRequestMethod(getHttpType());
+            if ("GET".equals(getHttpType()) || "DELETE".equals(getHttpType())) {
                 mHttpConection.connect();
             } else {
-                byte[] data = getParamString(getPostArgs()).toString().getBytes();
-                mHttpConection.setRequestMethod("POST");
+                byte[] data = getParamString(getPostArgs()).getBytes();
                 mHttpConection.setUseCaches(false);
                 mHttpConection.setDoInput(true);
                 mHttpConection.setDoOutput(true);
-                mHttpConection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 mHttpConection.setRequestProperty("Content-Length", String.valueOf(data.length));
                 os = mHttpConection.getOutputStream();
                 os.write(data);
             }
             int code = mHttpConection.getResponseCode();
-            InputStream stream;
-            if (code == HttpURLConnection.HTTP_OK) {
-                stream = mHttpConection.getInputStream();
-            } else {
-                stream = mHttpConection.getErrorStream();
-            }
+            InputStream stream = null;
             try {
-                return AnalysisContent(stream);
+                if (code == HttpURLConnection.HTTP_OK) {
+                    stream = mHttpConection.getInputStream();
+                    return AnalysisContent(stream);
+                } else {
+                    stream = mHttpConection.getErrorStream();
+                    AnalysisError(stream);
+                    return null;
+                }
             } finally {
                 if (os != null) {
                     try {
@@ -143,9 +163,7 @@ public abstract class HttpFactoryBase<T> {
                     }
                 }
             }
-        } catch (MalformedURLException e) {
-            LogUtils.e("httpfactorybase", e.toString());
-        } catch (IOException e) {
+        }  catch (Exception e) {
             LogUtils.e("httpfactorybase", e.toString());
         } finally {
             if (mHttpConection != null) {
@@ -156,19 +174,21 @@ public abstract class HttpFactoryBase<T> {
         return null;
     }
 
-    private StringBuffer getParamString(Map<String, String> params) {
+    protected String getParamString(Map<String, Object> params) {
         StringBuffer result = new StringBuffer();
-        Iterator<Map.Entry<String, String>> iterator = params.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, String> param = iterator.next();
-            String key = param.getKey();
-            String value = param.getValue();
-            result.append(key).append('=').append(value);
-            if (iterator.hasNext()) {
-                result.append('&');
+        if (params != null) {
+            Iterator<Map.Entry<String, Object>> iterator = params.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<String, Object> param = iterator.next();
+                String key = param.getKey();
+                String value = param.getValue().toString();
+                result.append(key).append('=').append(value);
+                if (iterator.hasNext()) {
+                    result.append('&');
+                }
             }
         }
-        return result;
+        return result.toString();
     }
 
     /**
@@ -193,7 +213,7 @@ public abstract class HttpFactoryBase<T> {
             }
             if (result == null) {
                 if (mHttpEventHandler != null) {
-                    mHttpEventHandler.HttpFailHandler();
+                    mHttpEventHandler.HttpFailHandler(null);
                 }
             } else {
                 if (mHttpEventHandler != null) {

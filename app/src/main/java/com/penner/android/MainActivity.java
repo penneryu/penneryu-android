@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.newrelic.agent.android.NewRelic;
 import com.penner.android.base.BaseActivity;
@@ -34,12 +33,9 @@ public class MainActivity extends BaseActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_menu);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
+        fab.setOnClickListener( v -> {
+            Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         });
 
         mDrawerLayout = (DrawerLayout)findViewById(R.id.main_drawer_layout);
@@ -54,13 +50,10 @@ public class MainActivity extends BaseActivity {
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-                return true;
-            }
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            menuItem.setChecked(true);
+            mDrawerLayout.closeDrawers();
+            return true;
         });
     }
 

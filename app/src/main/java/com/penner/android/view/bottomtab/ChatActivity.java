@@ -14,7 +14,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -100,20 +99,14 @@ public class ChatActivity extends BaseActivity {
         getToolbar().setTitle(mConversationInfo.userName);
         setupToolbarWithoutTitle();
 
-        mBtnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String content = mSendEditText.getText().toString();
-                saveMessageInfo(content, MessageInfo.TEXT_TYPE);
-            }
+        mBtnSend.setOnClickListener(v -> {
+            String content = mSendEditText.getText().toString();
+            saveMessageInfo(content, MessageInfo.TEXT_TYPE);
         });
-        mSendEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mChatList.scrollToPosition(mMessageInfos.size() - 1);
-                if (mMore.getVisibility() == View.VISIBLE) {
-                    mMore.setVisibility(View.GONE);
-                }
+        mSendEditText.setOnClickListener(v1 -> {
+            mChatList.scrollToPosition(mMessageInfos.size() - 1);
+            if (mMore.getVisibility() == View.VISIBLE) {
+                mMore.setVisibility(View.GONE);
             }
         });
         mSendEditText.addTextChangedListener(new TextWatcher() {
@@ -136,69 +129,54 @@ public class ChatActivity extends BaseActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-        mChatList.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+        mChatList.setOnTouchListener((v, event) -> {
+            PennerUtils.hideKeyboard(ChatActivity.this);
+            mMore.setVisibility(View.GONE);
+            return false;
+        });
+        mBtnMore.setOnClickListener(v -> {
+            if (mMore.getVisibility() == View.GONE) {
                 PennerUtils.hideKeyboard(ChatActivity.this);
+                mMore.setVisibility(View.VISIBLE);
+                mFaceContainer.setVisibility(View.GONE);
+                mBtnContainer.setVisibility(View.VISIBLE);
+            } else {
                 mMore.setVisibility(View.GONE);
-                return false;
             }
         });
-        mBtnMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mMore.getVisibility() == View.GONE) {
-                    PennerUtils.hideKeyboard(ChatActivity.this);
-                    mMore.setVisibility(View.VISIBLE);
-                    mFaceContainer.setVisibility(View.GONE);
-                    mBtnContainer.setVisibility(View.VISIBLE);
-                } else {
-                    mMore.setVisibility(View.GONE);
-                }
+        mBtnTakePicture.setOnClickListener(v -> {
+            if (!PennerUtils.isExitsSdcard()) {
+                PennerUtils.showSnackbar(mBtnTakePicture, R.string.chat_not_takepic);
+            } else {
+                mCameraFile = PennerUtils.getCameraFile();
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mCameraFile));
+                startActivityForResult(cameraIntent, REQUEST_CODE_CAMERA);
             }
         });
-        mBtnTakePicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!PennerUtils.isExitsSdcard()) {
-                    PennerUtils.showSnackbar(mBtnTakePicture, R.string.chat_not_takepic);
-                } else {
-                    mCameraFile = PennerUtils.getCameraFile();
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mCameraFile));
-                    startActivityForResult(intent, REQUEST_CODE_CAMERA);
-                }
+        mBtnPicture.setOnClickListener(v -> {
+            Intent picIntent;
+            if (Build.VERSION.SDK_INT < 19) {
+                picIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                picIntent.setType("image/*");
+            } else {
+                picIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             }
-        });
-        mBtnPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if (Build.VERSION.SDK_INT < 19) {
-                    intent = new Intent(Intent.ACTION_GET_CONTENT);
-                    intent.setType("image/*");
-                } else {
-                    intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                }
-                startActivityForResult(intent, REQUEST_CODE_LOCAL);
-            }
+            startActivityForResult(picIntent, REQUEST_CODE_LOCAL);
         });
         mSwipeLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
-        mSwipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if (++mCurrentPage <= mMaxPage) {
-                    MessageInfo messageInfo = mMessageInfos.get(0);
-                    List<MessageInfo> messageInfos = mMessageFactory.findRecords(getLastPageIndex(), mPageSize,
-                            "convId=? and time<?", new String[]{String.valueOf(mConversationInfo.id), String.valueOf(messageInfo.time)});
-                    int position = mLayoutManager.findLastVisibleItemPosition();
-                    mMessageInfos.addAll(0, messageInfos);
-                    mChatAdapter.notifyDataSetChanged();
-                    mChatList.scrollToPosition(position + messageInfos.size() - 1);
-                    mSwipeLayout.setRefreshing(false);
-                } else {
-                    mSwipeLayout.setRefreshing(false);
-                }
+        mSwipeLayout.setOnRefreshListener(() -> {
+            if (++mCurrentPage <= mMaxPage) {
+                MessageInfo messageInfo = mMessageInfos.get(0);
+                List<MessageInfo> messageInfos = mMessageFactory.findRecords(getLastPageIndex(), mPageSize,
+                        "convId=? and time<?", new String[]{String.valueOf(mConversationInfo.id), String.valueOf(messageInfo.time)});
+                int position = mLayoutManager.findLastVisibleItemPosition();
+                mMessageInfos.addAll(0, messageInfos);
+                mChatAdapter.notifyDataSetChanged();
+                mChatList.scrollToPosition(position + messageInfos.size() - 1);
+                mSwipeLayout.setRefreshing(false);
+            } else {
+                mSwipeLayout.setRefreshing(false);
             }
         });
     }
