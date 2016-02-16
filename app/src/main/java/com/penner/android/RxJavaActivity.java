@@ -1,6 +1,8 @@
 package com.penner.android;
 
 import android.os.Bundle;
+import android.os.Looper;
+import android.widget.TextView;
 
 import com.penner.android.base.BaseActivity;
 import com.penner.android.model.rxjava.RxPennerInfo;
@@ -9,17 +11,22 @@ import com.penner.android.utils.LogUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import rx.Observable;
-import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 public class RxJavaActivity extends BaseActivity {
 
+    @Bind(R.id.rxjava_txt)
+    TextView mRxjavaTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rx_java);
+        ButterKnife.bind(this);
 
         List<RxPennerInfo> infoList = new ArrayList<>();
         infoList.add(new RxPennerInfo("ab", "abv"));
@@ -41,9 +48,33 @@ public class RxJavaActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(rxPennerInfo1 -> LogUtils.d("rxjava", rxPennerInfo1.name));
 
+//        new NoUiThread().start();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new NoUiThread().start();
     }
 
     private RxPennerInfo getInfoByValue(String value) {
         return new RxPennerInfo(value + " penneryu", value);
+    }
+
+    class NoUiThread extends Thread {
+        @Override
+        public void run() {
+//            Looper.prepare();
+//            TextView tx = new TextView(RxJavaActivity.this);
+//            tx.setText("non-UiThread update textview");
+
+//            WindowManager windowManager = RxJavaActivity.this.getWindowManager();
+//            WindowManager.LayoutParams params = new WindowManager.LayoutParams(
+//                    200, 200, 200, 200, WindowManager.LayoutParams.FIRST_SUB_WINDOW,
+//                    WindowManager.LayoutParams.TYPE_TOAST, PixelFormat.OPAQUE);
+//            windowManager.addView(tx, params);
+            mRxjavaTextView.setText("Penner");
+//            Looper.loop();
+        }
     }
 }

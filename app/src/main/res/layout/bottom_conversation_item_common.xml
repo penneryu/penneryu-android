@@ -78,7 +78,7 @@
         android:layout_alignTop="@id/home_cov_common_reavatar"
         android:layout_marginRight="7dp"
         android:layout_marginTop="3dp"
-        android:background="@mipmap/penner_tab_item_unread"
+        android:background="@drawable/icon_unread"
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="12sp" />

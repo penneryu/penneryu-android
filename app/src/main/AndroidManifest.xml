@@ -75,6 +75,10 @@
             android:name=".kotlin.SqlbriteActivity"
             android:label="Sqlbrite"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".NdkActivity"
+            android:label="Ndk"
+            android:screenOrientation="portrait"/>
 
         <service android:name=".model.service.LocalService" />
 

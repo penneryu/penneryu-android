@@ -37,6 +37,7 @@ public class MainFragment extends Fragment {
         list.add("LargeImage");
         list.add("SurfaceView");
         list.add("RxJava");
+        list.add("Ndk");
         recyclerView.setAdapter(new MainRecyclerAdapter(getContext(), list));
         return recyclerView;
     }
