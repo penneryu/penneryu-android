@@ -7,9 +7,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 
 import com.penner.android.utils.LogUtils;
+import com.squareup.sqlbrite.BriteDatabase;
+import com.squareup.sqlbrite.SqlBrite;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by PennerYu on 15/10/13.
@@ -129,6 +136,28 @@ public abstract class LocalFactoryBase<T> {
             }
         }
         return result;
+    }
+
+    public void sqlBriteFindRecords(Action1<List<T>> callback) {
+        SqlBrite sqlBrite = SqlBrite.create();
+        BriteDatabase db = sqlBrite.wrapDatabaseHelper(helper);
+        try {
+            Observable<SqlBrite.Query> lists = db.createQuery(getTableName(), String.format("select * from %s", getTableName()));
+            lists.onBackpressureBuffer()
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .flatMap(query ->
+                    query.asRows(cursor -> createModel(cursor))
+                        .onBackpressureBuffer()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .toList()
+                ).subscribe(callback, throwable -> throwable.printStackTrace());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            db.close();
+        }
     }
 
     /**

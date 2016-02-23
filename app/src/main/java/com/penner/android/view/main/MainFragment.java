@@ -38,6 +38,7 @@ public class MainFragment extends Fragment {
         list.add("SurfaceView");
         list.add("RxJava");
         list.add("Ndk");
+        list.add("Ashmen");
         recyclerView.setAdapter(new MainRecyclerAdapter(getContext(), list));
         return recyclerView;
     }

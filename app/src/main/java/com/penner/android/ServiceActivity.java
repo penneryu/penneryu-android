@@ -6,16 +6,20 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.penner.android.base.BaseActivity;
+import com.penner.android.model.ashmen.IRemoteService;
 import com.penner.android.model.service.LocalService;
 import com.penner.android.utils.LogUtils;
 
 public class ServiceActivity extends BaseActivity {
 
     private LocalService mLocalService;
+    private IRemoteService mRemoteService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,7 @@ public class ServiceActivity extends BaseActivity {
         Button btnBind = (Button)findViewById(R.id.service_btn_bind);
         Button btnAction = (Button)findViewById(R.id.service_btn_action);
         Button btnUnBind = (Button)findViewById(R.id.service_btn_unbind);
+        TextView textView = (TextView)findViewById(R.id.service_txt);
 
         btnBind.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +37,10 @@ public class ServiceActivity extends BaseActivity {
                 try {
                     Intent intent = new Intent(ServiceActivity.this, LocalService.class);
                     bindService(intent, mConnecton, Context.BIND_AUTO_CREATE);
+
+                    Intent intent1 = new Intent("com.penner.android.model.ashmen.action.Remote");
+                    intent1.setPackage("com.penner.android");
+                    bindService(intent1, mConnecton1, BIND_AUTO_CREATE);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -43,6 +52,13 @@ public class ServiceActivity extends BaseActivity {
                 if (mLocalService != null) {
                     mLocalService.showNotification();
                 }
+                if (mRemoteService != null) {
+                    try {
+                        textView.setText(String.valueOf(mRemoteService.getPid()));
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
         btnUnBind.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +66,7 @@ public class ServiceActivity extends BaseActivity {
             public void onClick(View v) {
                 try {
                     unbindService(mConnecton);
+                    unbindService(mConnecton1);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -68,6 +85,18 @@ public class ServiceActivity extends BaseActivity {
         public void onServiceDisconnected(ComponentName name) {
             mLocalService = null;
             LogUtils.i("LocalService", "onServiceDisconnected");
+        }
+    };
+
+    private ServiceConnection mConnecton1 = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mRemoteService = IRemoteService.Stub.asInterface(service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            mRemoteService = null;
         }
     };
 

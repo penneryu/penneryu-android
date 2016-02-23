@@ -47,6 +47,8 @@ class MainRecyclerAdapter(var context: Context, var list: List<String>) : Recycl
                 context.startActivity(Intent(context, RxJavaActivity::class.java))
             } else if (position == 10) {
                 context.startActivity(Intent(context, NdkActivity::class.java))
+            } else if (position == 11) {
+                context.startActivity(Intent(context, AshmenActivity::class.java))
             }
         })
     }
