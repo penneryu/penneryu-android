@@ -28,6 +28,8 @@ public class RxJavaActivity extends BaseActivity {
         setContentView(R.layout.activity_rx_java);
         ButterKnife.bind(this);
 
+        getToolbar().setNavigationIcon(R.drawable.ic_close_24dp);
+
         List<RxPennerInfo> infoList = new ArrayList<>();
         infoList.add(new RxPennerInfo("ab", "abv"));
         infoList.add(new RxPennerInfo("ac", "acv"));

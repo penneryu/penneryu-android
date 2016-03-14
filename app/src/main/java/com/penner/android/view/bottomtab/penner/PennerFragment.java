@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.penner.android.R;
 import com.penner.android.data.bottomtab.ConversationInfo;
 import com.penner.android.data.bottomtab.LocalConversationFactory;
-import com.penner.android.model.bottomtab.penner.RecyclerAdapter;
 import com.penner.android.utils.LogUtils;
 
 import java.util.ArrayList;
@@ -32,25 +31,19 @@ public class PennerFragment extends Fragment implements Action1<List<Conversatio
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.bottom_fragment_penner, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        if (savedInstanceState != null) {
-            return;
+        if (container == null) {
+            return null;
         }
+        View rootView = inflater.inflate(R.layout.bottom_fragment_penner, container, false);
 
-        recyclerView = (RecyclerView)getView().findViewById(R.id.bootom_penner_list);
+        recyclerView = (RecyclerView)rootView.findViewById(R.id.bootom_penner_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         LocalConversationFactory factory = new LocalConversationFactory(getActivity());
 
         factory.sqlBriteFindRecords(this);
 //        conversationInfos = factory.findRecords();
-        recyclerView.setAdapter(new RecyclerAdapter(getActivity(), conversationInfos));
+//        recyclerView.setAdapter(new RecyclerAdapter(getActivity(), conversationInfos));
 
         List<ConversationInfo> conversationInfos = new ArrayList<>(2);
         ConversationInfo info1 = new ConversationInfo();
@@ -71,6 +64,8 @@ public class PennerFragment extends Fragment implements Action1<List<Conversatio
         conversationInfos.add(info1);
         conversationInfos.add(info2);
         factory.insertRecord(conversationInfos);
+
+        return rootView;
     }
 
     @Override

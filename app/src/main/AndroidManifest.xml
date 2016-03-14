@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".kotlin.KotlinActivity"
+            android:name=".KotlinActivity"
             android:label="Kotlin"
             android:screenOrientation="portrait" />
         <activity
@@ -72,7 +72,7 @@
             android:label="RxJava"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".kotlin.SqlbriteActivity"
+            android:name=".SqlbriteActivity"
             android:label="Sqlbrite"
             android:screenOrientation="portrait" />
         <activity
@@ -82,16 +82,26 @@
         <activity
             android:name=".AshmenActivity"
             android:label="Ashmen"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".WebViewActivity"
+            android:label="WebView"
+            android:screenOrientation="portrait" />
 
         <service android:name=".model.service.LocalService" />
-        <service android:name=".model.ashmen.Server" android:process=":Server" android:exported="false">
-            <intent-filter >
+        <service
+            android:name=".model.ashmen.Server"
+            android:exported="false"
+            android:process=":Server">
+            <intent-filter>
                 <action android:name="com.penner.android.model.ashmen.action.SERVER" />
             </intent-filter>
         </service>
-        <service android:name=".model.ashmen.RemoteService" android:process=":Server" android:exported="false">
-            <intent-filter >
+        <service
+            android:name=".model.ashmen.RemoteService"
+            android:exported="false"
+            android:process=":Server">
+            <intent-filter>
                 <action android:name="com.penner.android.model.ashmen.action.Remote" />
             </intent-filter>
         </service>

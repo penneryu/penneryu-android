@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import com.newrelic.agent.android.NewRelic;
 import com.penner.android.base.BaseActivity;
 import com.penner.android.model.main.MainViewPagerAdapter;
+import com.penner.android.utils.LogUtils;
+import com.penner.android.view.SupportFragment;
 import com.penner.android.view.main.MainFragment;
 
 public class MainActivity extends BaseActivity {
@@ -44,8 +46,8 @@ public class MainActivity extends BaseActivity {
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tabs);
 
         MainViewPagerAdapter adapter = new MainViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MainFragment(), "Penner1");
-        adapter.addFragment(new MainFragment(), "Penner2");
+        adapter.addFragment(new MainFragment(), "Penner");
+        adapter.addFragment(new SupportFragment(), "Support");
         adapter.addFragment(new MainFragment(), "Penner3");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

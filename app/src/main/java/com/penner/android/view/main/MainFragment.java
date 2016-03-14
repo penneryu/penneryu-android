@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.penner.android.R;
-import com.penner.android.kotlin.model.main.MainRecyclerAdapter;
+import com.penner.android.model.main.MainRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +39,7 @@ public class MainFragment extends Fragment {
         list.add("RxJava");
         list.add("Ndk");
         list.add("Ashmen");
+        list.add("Webview");
         recyclerView.setAdapter(new MainRecyclerAdapter(getContext(), list));
         return recyclerView;
     }

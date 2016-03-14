@@ -33,6 +33,8 @@ public class PennerApplication extends Application {
 
         leanCloudInit();
         frescoInit(getApplicationContext());
+
+
     }
 
     private void leanCloudInit() {
