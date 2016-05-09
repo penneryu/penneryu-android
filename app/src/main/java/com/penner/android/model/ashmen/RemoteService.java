@@ -2,7 +2,8 @@ package com.penner.android.model.ashmen;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.*;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
 /**
@@ -20,6 +21,16 @@ public class RemoteService extends Service {
         @Override
         public int getPid() throws RemoteException {
             return android.os.Process.myPid();
+        }
+
+        @Override
+        public String getTestValue(String name) throws RemoteException {
+            try {
+                return name.substring(3);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                throw new RuntimeException(ex.getMessage());
+            }
         }
 
         @Override

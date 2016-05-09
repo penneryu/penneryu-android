@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.penner.android.FrescoActivity;
 import com.penner.android.R;
 import com.penner.android.ServiceActivity;
 import com.penner.android.utils.LogUtils;
@@ -33,6 +34,18 @@ public class LocalService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         LogUtils.i("LocalService", "onStartCommand");
+//        Intent activityIntent = new Intent(this, FrescoActivity.class);
+//        activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(activityIntent);
+
+        if (Build.VERSION.SDK_INT < 18) {
+            startForeground(1001, new Notification());
+        } else {
+            Intent innerIntent = new Intent(this, GrayInnerService.class);
+            startService(innerIntent);
+            startForeground(1001, new Notification());
+        }
+
         return START_STICKY;
     }
 
@@ -66,10 +79,34 @@ public class LocalService extends Service {
         mNotifactionManager.notify(R.string.service_local_start, notification);
     }
 
+    public String getTestValue(String name) {
+        return name.substring(3);
+    }
+
     public class LocalBinder extends Binder {
 
         public LocalService getService() {
             return LocalService.this;
+        }
+    }
+
+    /**
+     * 给 API >= 18 的平台上用的灰色保活手段
+     */
+    public static class GrayInnerService extends Service {
+
+        @Override
+        public int onStartCommand(Intent intent, int flags, int startId) {
+            startForeground(1001, new Notification());
+            stopForeground(true);
+            stopSelf();
+            return super.onStartCommand(intent, flags, startId);
+        }
+
+        @Nullable
+        @Override
+        public IBinder onBind(Intent intent) {
+            return null;
         }
     }
 }

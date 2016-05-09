@@ -37,4 +37,9 @@
         android:textSize="@dimen/penner_subtitle"
         android:textColor="@color/penner_subtitle" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_chat_emoji"/>
+
 </RelativeLayout>

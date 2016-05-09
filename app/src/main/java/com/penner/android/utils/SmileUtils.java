@@ -1,8 +1,13 @@
 package com.penner.android.utils;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.text.Html;
 import android.text.Spannable;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ImageSpan;
+import android.text.style.StyleSpan;
 
 import com.penner.android.R;
 
@@ -81,5 +86,19 @@ public final class SmileUtils {
         }
 
         return b;
+    }
+
+    public static Spannable parseItalicStyleSpan(String content) {
+        final Spannable source = (Spannable) Html.fromHtml(content);
+        final StyleSpan[] styleSpans = source.getSpans(0, source.length(), StyleSpan.class);
+        if (styleSpans != null && styleSpans.length > 0) {
+            for (StyleSpan styleSpan : styleSpans) {
+                if (Typeface.ITALIC == styleSpan.getStyle()) {
+                    source.setSpan(new BackgroundColorSpan(Color.RED), source.getSpanStart(styleSpan), source.getSpanEnd(styleSpan), 0);
+                    source.removeSpan(styleSpan);
+                }
+            }
+        }
+        return source;
     }
 }

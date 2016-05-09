@@ -36,7 +36,8 @@ public class ServiceActivity extends BaseActivity {
             public void onClick(View v) {
                 try {
                     Intent intent = new Intent(ServiceActivity.this, LocalService.class);
-                    bindService(intent, mConnecton, Context.BIND_AUTO_CREATE);
+//                    bindService(intent, mConnecton, Context.BIND_AUTO_CREATE);
+                    startService(intent);
 
                     Intent intent1 = new Intent("com.penner.android.model.ashmen.action.Remote");
                     intent1.setPackage("com.penner.android");

@@ -34,7 +34,7 @@ public class PennerApplication extends Application {
         leanCloudInit();
         frescoInit(getApplicationContext());
 
-
+        LogUtils.d("application", "pennerapplication");
     }
 
     private void leanCloudInit() {

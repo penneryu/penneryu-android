@@ -6,6 +6,8 @@ package com.penner.android.model.ashmen;
 interface IRemoteService {
 
     int getPid();
+
+    String getTestValue(String name);
     /**
      * Demonstrates some basic types that you can use as parameters
      * and return values in AIDL.

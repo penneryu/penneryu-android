@@ -1,6 +1,6 @@
 package com.penner.android.model.main
 
-import android.content.Context
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,12 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.penner.android.*
-import com.penner.android.KotlinActivity
 
 /**
  * Created by PennerYu on 15/10/10.
  */
-class MainRecyclerAdapter(var context: Context, var list: List<String>) : RecyclerView.Adapter<MainRecyclerAdapter.CellViewHodler>() {
+class MainRecyclerAdapter(var context: Activity, var list: List<String>) : RecyclerView.Adapter<MainRecyclerAdapter.CellViewHodler>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CellViewHodler? {
         var view = LayoutInflater.from(context).inflate(R.layout.penner_recycler_item, parent, false);
@@ -51,6 +50,8 @@ class MainRecyclerAdapter(var context: Context, var list: List<String>) : Recycl
                 context.startActivity(Intent(context, AshmenActivity::class.java))
             } else if (position == 12) {
                 context.startActivity(Intent(context, WebViewActivity::class.java))
+            } else if (position == 13) {
+                context.startActivity(Intent(context, EmojiActivity::class.java))
             }
         })
     }

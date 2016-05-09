@@ -40,7 +40,8 @@ public class MainFragment extends Fragment {
         list.add("Ndk");
         list.add("Ashmen");
         list.add("Webview");
-        recyclerView.setAdapter(new MainRecyclerAdapter(getContext(), list));
+        list.add("Emoji");
+        recyclerView.setAdapter(new MainRecyclerAdapter(getActivity(), list));
         return recyclerView;
     }
 }
