@@ -14,6 +14,7 @@ import android.view.SurfaceView;
 
 import com.penner.android.base.BaseActivity;
 import com.penner.android.view.surface.PennerSurfaceView;
+import com.penner.android.view.surface.TestSurfaceView;
 
 public class ScaleGestureActivity extends BaseActivity {
 
@@ -27,10 +28,11 @@ public class ScaleGestureActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scale_gesture);
 
-        mSurfaceView = (PennerSurfaceView)findViewById(R.id.scale_view);
-        mSurfaceHolder = mSurfaceView.getHolder();
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.chat_show_1);
-        mScaleDetetor = new ScaleGestureDetector(this, new ScaleGestureListener());
+//        mSurfaceView = (PennerSurfaceView)findViewById(R.id.scale_view);
+//        mSurfaceHolder = mSurfaceView.getHolder();
+//        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.chat_show_1);
+//        mScaleDetetor = new ScaleGestureDetector(this, new ScaleGestureListener());
+
 
 
 //        Canvas canvas = mSurfaceHolder.lockCanvas();
@@ -40,10 +42,10 @@ public class ScaleGestureActivity extends BaseActivity {
 //        mSurfaceHolder.unlockCanvasAndPost(canvas);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return mScaleDetetor.onTouchEvent(event);
-    }
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event) {
+//        return mScaleDetetor.onTouchEvent(event);
+//    }
 
     public class ScaleGestureListener implements ScaleGestureDetector.OnScaleGestureListener {
 

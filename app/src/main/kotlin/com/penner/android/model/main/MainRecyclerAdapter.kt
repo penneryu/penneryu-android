@@ -52,6 +52,8 @@ class MainRecyclerAdapter(var context: Activity, var list: List<String>) : Recyc
                 context.startActivity(Intent(context, WebViewActivity::class.java))
             } else if (position == 13) {
                 context.startActivity(Intent(context, EmojiActivity::class.java))
+            } else if (position == 14) {
+                context.startActivity(Intent(context, PdfActivity::class.java))
             }
         })
     }

@@ -14,7 +14,7 @@ public class NdkActivity extends BaseActivity {
     TextView mNdkTextView;
 
     static {
-        System.loadLibrary("pennerNDK");
+        System.loadLibrary("penneranddown");
     }
 
     @Override
@@ -23,8 +23,8 @@ public class NdkActivity extends BaseActivity {
         setContentView(R.layout.activity_ndk);
         ButterKnife.bind(this);
 
-        mNdkTextView.setText(penner("penner"));
+        mNdkTextView.setText(markdownToHtml("penner*aaa*yu", true));
     }
 
-    private native String penner(String source);
+    public native String markdownToHtml(String raw, boolean hasStrong);
 }

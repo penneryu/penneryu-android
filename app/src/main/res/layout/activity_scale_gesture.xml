@@ -7,10 +7,15 @@
 
     <include layout="@layout/penner_toolbar"/>
 
-    <com.penner.android.view.surface.PennerSurfaceView
-        android:id="@+id/scale_view"
+    <!--<com.penner.android.view.surface.PennerSurfaceView-->
+        <!--android:id="@+id/scale_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:visibility="gone"/>-->
+
+    <com.penner.android.view.surface.TestSurfaceView
+        android:id="@+id/penner_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/penner_toolbar"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

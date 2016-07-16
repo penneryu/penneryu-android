@@ -41,6 +41,7 @@ public class MainFragment extends Fragment {
         list.add("Ashmen");
         list.add("Webview");
         list.add("Emoji");
+        list.add("pdf");
         recyclerView.setAdapter(new MainRecyclerAdapter(getActivity(), list));
         return recyclerView;
     }
