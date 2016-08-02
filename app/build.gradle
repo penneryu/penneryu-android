@@ -130,8 +130,8 @@ repositories {
 }
 
 def getNdkDir() {
-    if (System.env.ANDROID_NDK_ROOT != null)
-       return System.env.ANDROID_NDK_ROOT
+    if (System.env.ANDROID_NDK != null)
+       return System.env.ANDROID_NDK
 
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
