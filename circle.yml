@@ -1,5 +1,5 @@
 general:
-  airtifacts:
+  artifacts:
     - /home/ubuntu/ECGApplication/app/build/outputs/apk/
 
 machine:
