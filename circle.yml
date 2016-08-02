@@ -19,4 +19,4 @@ dependencies:
 test: 
   override:
     - ./gradlew assembleDebug
-    - cp -r project-name/build/outputs $CIRCLE_ARTIFACTS
+    - cp -r penneryu-android/build/outputs $CIRCLE_ARTIFACTS
