@@ -1,17 +1,17 @@
 general:
-	airtifacts:
-		- /home/ubuntu/ECGApplication/app/build/outputs/apk/
+  airtifacts:
+    - /home/ubuntu/ECGApplication/app/build/outputs/apk/
 
 machine:
-	environment:
-		ANDROID_HOME: /usr/local/android-sdk-linux
-		ANDROID_NDK_HOME: ${ANDROID_NDK}
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+    ANDROID_NDK_HOME: ${ANDROID_NDK}
 
 dependencies:
-	pre:
-		- echo y | android update sdk --no-ui --all --filter "penneryu-android"
+  pre:
+    - echo y | android update sdk --no-ui --all --filter "penneryu-android"
 
-test:
-	override:
-		- ./gradlew assembleRelease
-		- cp -r project-name/build/outputs $CIRCLE_ARTIFACTS
+test: 
+  override:
+    - ./gradlew assembleRelease
+    - cp -r project-name/build/outputs $CIRCLE_ARTIFACTS
