@@ -9,7 +9,7 @@ machine:
 
 dependencies:
   pre:
-    - echo y | android update sdk --no-ui --all --filter "penneryu-android"
+    - echo y | android update sdk --no-ui --all --filter "tools"
 
 test: 
   override:
