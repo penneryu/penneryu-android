@@ -6,6 +6,8 @@ machine:
   environment:
     ANDROID_HOME: /usr/local/android-sdk-linux
     ANDROID_NDK_HOME: ${ANDROID_NDK}
+  java:
+    version: oraclejdk8
 
 dependencies:
   pre:
