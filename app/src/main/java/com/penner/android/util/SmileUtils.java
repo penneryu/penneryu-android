@@ -1,4 +1,4 @@
-package com.penner.android.utils;
+package com.penner.android.util;
 
 import android.content.Context;
 import android.graphics.Color;

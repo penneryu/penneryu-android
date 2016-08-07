@@ -8,7 +8,7 @@ import android.os.Build;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 
-import com.penner.android.utils.LogUtils;
+import com.penner.android.util.LogUtils;
 
 import java.util.List;
 

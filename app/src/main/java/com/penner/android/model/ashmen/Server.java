@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.penner.android.utils.LogUtils;
+import com.penner.android.util.LogUtils;
 
 /**
  * Created by penneryu on 16/2/23.

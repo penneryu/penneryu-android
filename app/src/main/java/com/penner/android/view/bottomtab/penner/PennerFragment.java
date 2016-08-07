@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.penner.android.R;
 import com.penner.android.data.bottomtab.ConversationInfo;
 import com.penner.android.data.bottomtab.LocalConversationFactory;
-import com.penner.android.utils.LogUtils;
+import com.penner.android.util.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;

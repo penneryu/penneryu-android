@@ -2,11 +2,9 @@ package com.penner.android.model.ashmen;
 
 import android.os.MemoryFile;
 
-import com.penner.android.utils.LogUtils;
+import com.penner.android.util.LogUtils;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * Created by penneryu on 16/2/23.

@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.penner.android.utils.PennerUtils;
+import com.penner.android.util.PennerUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;

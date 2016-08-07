@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.penner.android.base.BaseActivity;
-import com.penner.android.utils.LogUtils;
+import com.penner.android.util.LogUtils;
 import com.penner.android.view.emoji.AndroidEmoji;
 
 import butterknife.Bind;

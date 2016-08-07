@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import com.penner.android.data.bottomtab.ConversationInfo;
 import com.penner.android.data.bottomtab.MessageInfo;
 import com.penner.android.model.bottomtab.penner.ChatAdapter;
-import com.penner.android.utils.DateUtils;
+import com.penner.android.util.DateUtils;
 
 import java.util.Date;
 

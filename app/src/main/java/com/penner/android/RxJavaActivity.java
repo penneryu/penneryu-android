@@ -1,12 +1,11 @@
 package com.penner.android;
 
 import android.os.Bundle;
-import android.os.Looper;
 import android.widget.TextView;
 
 import com.penner.android.base.BaseActivity;
 import com.penner.android.model.rxjava.RxPennerInfo;
-import com.penner.android.utils.LogUtils;
+import com.penner.android.util.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;

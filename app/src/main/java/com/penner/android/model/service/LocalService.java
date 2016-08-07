@@ -11,11 +11,9 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.penner.android.FrescoActivity;
 import com.penner.android.R;
 import com.penner.android.ServiceActivity;
-import com.penner.android.utils.LogUtils;
-import com.penner.android.utils.PennerUtils;
+import com.penner.android.util.LogUtils;
 
 /**
  * Created by PennerYu on 15/10/26.

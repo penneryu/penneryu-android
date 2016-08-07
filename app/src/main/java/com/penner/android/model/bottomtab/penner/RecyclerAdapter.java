@@ -12,9 +12,9 @@ import android.widget.TextView;
 
 import com.penner.android.R;
 import com.penner.android.data.bottomtab.ConversationInfo;
-import com.penner.android.utils.Constants;
-import com.penner.android.utils.DateUtils;
-import com.penner.android.utils.SmileUtils;
+import com.penner.android.util.Constants;
+import com.penner.android.util.DateUtils;
+import com.penner.android.util.SmileUtils;
 import com.penner.android.view.bottomtab.ChatActivity;
 
 import java.util.Date;

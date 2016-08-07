@@ -26,8 +26,8 @@ import com.penner.android.data.bottomtab.LocalConversationFactory;
 import com.penner.android.data.bottomtab.LocalMessageFactory;
 import com.penner.android.data.bottomtab.MessageInfo;
 import com.penner.android.model.bottomtab.penner.ChatAdapter;
-import com.penner.android.utils.Constants;
-import com.penner.android.utils.PennerUtils;
+import com.penner.android.util.Constants;
+import com.penner.android.util.PennerUtils;
 
 import java.io.File;
 import java.util.List;

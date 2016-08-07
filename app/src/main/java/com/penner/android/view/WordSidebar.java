@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.penner.android.utils.PennerUtils;
+import com.penner.android.util.PennerUtils;
 
 /**
  * Created by PennerYu on 15/10/15.

@@ -2,11 +2,9 @@ package com.penner.android.model;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.Environment;
 
 import com.avos.avoscloud.AVOSCloud;
 import com.facebook.cache.disk.DiskCacheConfig;
-import com.facebook.common.internal.Supplier;
 import com.facebook.common.logging.FLog;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.backends.okhttp.OkHttpImagePipelineConfigFactory;
@@ -14,9 +12,9 @@ import com.facebook.imagepipeline.cache.MemoryCacheParams;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.listener.RequestListener;
 import com.facebook.imagepipeline.listener.RequestLoggingListener;
-import com.penner.android.utils.Constants;
-import com.penner.android.utils.LogUtils;
-import com.penner.android.utils.PennerUtils;
+import com.penner.android.util.Constants;
+import com.penner.android.util.LogUtils;
+import com.penner.android.util.PennerUtils;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.HashSet;

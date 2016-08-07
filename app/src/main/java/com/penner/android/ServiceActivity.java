@@ -1,7 +1,6 @@
 package com.penner.android;
 
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import com.penner.android.base.BaseActivity;
 import com.penner.android.model.ashmen.IRemoteService;
 import com.penner.android.model.service.LocalService;
-import com.penner.android.utils.LogUtils;
+import com.penner.android.util.LogUtils;
 
 public class ServiceActivity extends BaseActivity {
 

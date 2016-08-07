@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.penner.android.base.BaseActivity;
-import com.penner.android.utils.PennerUtils;
 import com.penner.android.view.bottomtab.BottomTabItemView;
 import com.penner.android.view.bottomtab.contact.ContactFragment;
 import com.penner.android.view.bottomtab.files.FilesFragment;

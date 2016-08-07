@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pennerlib/pennerlib.iml" filepath="$PROJECT_DIR$/pennerlib/pennerlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/penneryu-android.iml" filepath="$PROJECT_DIR$/penneryu-android.iml" />
     </modules>
   </component>

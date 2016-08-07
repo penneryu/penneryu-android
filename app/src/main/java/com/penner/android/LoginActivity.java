@@ -7,7 +7,6 @@ import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -15,7 +14,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogInCallback;
 import com.penner.android.base.BaseActivity;
-import com.penner.android.utils.PennerUtils;
+import com.penner.android.util.PennerUtils;
 
 public class LoginActivity extends BaseActivity {
 

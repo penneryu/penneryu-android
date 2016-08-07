@@ -3,7 +3,7 @@ package com.penner.android.data;
 import android.os.AsyncTask;
 import android.os.Build;
 
-import com.penner.android.utils.LogUtils;
+import com.penner.android.util.LogUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
