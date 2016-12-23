@@ -14,16 +14,16 @@ import android.widget.TextView;
 import com.penner.android.base.BaseActivity;
 import com.penner.android.model.ashmen.IMemoryService;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AshmenActivity extends BaseActivity {
 
-    @Bind(R.id.ashmen_edit)
+    @BindView(R.id.ashmen_edit)
     EditText mEdiText;
-    @Bind(R.id.ashmen_txt)
+    @BindView(R.id.ashmen_txt)
     TextView mTextView;
-    @Bind(R.id.ashmen_btn)
+    @BindView(R.id.ashmen_btn)
     Button mButton;
 
     private IMemoryService mService;

@@ -19,7 +19,7 @@ class KotlinActivity : BaseActivity() {
 
         stackview = findViewById(R.id.kotlin_stackview) as StackView
 
-        var colors = IntArray(5)
+        val colors = IntArray(5)
         colors.set(0, Color.BLUE)
         colors.set(1, Color.CYAN)
         colors.set(2, Color.GRAY)

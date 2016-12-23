@@ -5,24 +5,22 @@ import android.widget.TextView;
 
 import com.penner.android.base.BaseActivity;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 public class NdkActivity extends BaseActivity {
 
-    @Bind(R.id.ndk_txt)
+//    @BindView(R.id.ndk_txt)
     TextView mNdkTextView;
 
     static {
-        System.loadLibrary("penneranddown");
+        System.loadLibrary("anddown");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ndk);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
 
+        mNdkTextView = (TextView)findViewById(R.id.ndk_txt);
         mNdkTextView.setText(markdownToHtml("penner*aaa*yu", true));
     }
 

@@ -17,8 +17,8 @@ class StackViewAdapter(var context: Context, var colors: IntArray) : BaseAdapter
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
-        var colorLayoutParams = LinearLayout.LayoutParams(PennerUtils.dpToPx(100), PennerUtils.dpToPx(100))
-        var colorLayout = LinearLayout(context)
+        val colorLayoutParams = LinearLayout.LayoutParams(PennerUtils.dpToPx(100), PennerUtils.dpToPx(100))
+        val colorLayout = LinearLayout(context)
         colorLayout.setBackgroundColor(colors.get(position))
         colorLayout.layoutParams = colorLayoutParams
 

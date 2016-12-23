@@ -14,82 +14,65 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
-//        ndk {
-//            moduleName "penneranddown"
-//            ldLibs "log"
-//        }
 //        jackOptions {
 //            enabled true
 //        }
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters 'x86', 'x86_64', 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+        }
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_TOOLCHAIN=clang'
+            }
+        }
     }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     sourceSets {
         main {
             java.srcDirs += 'src/main/kotlin'
-            jni.srcDirs = [] // disable automatic ndk-build call, which ignore our Android.mk
-            jniLibs.srcDir 'src/main/libs'
         }
     }
     //为了解决部分第三方库重复打包了META-INF的问题
     packagingOptions{
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+        pickFirst 'META-INF/services/javax.annotation.processing.Processor'
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
     lintOptions {
         abortOnError false
     }
     dataBinding {
         enabled = true
     }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+        }
+    }
     productFlavors {
     }
-
-    // call regular ndk-build(.cmd) script from app directory
-    task ndkBuild(type: Exec) {
-        workingDir file('src/main')
-        commandLine getNdkBuildCmd()
-    }
-
-    tasks.withType(JavaCompile) {
-        compileTask -> compileTask.dependsOn ndkBuild
-    }
-
-    task cleanNative(type: Exec) {
-        workingDir file('src/main')
-        commandLine getNdkBuildCmd(), 'clean'
-    }
-
-    clean.dependsOn cleanNative
-//    splits {
-//        abi {
-//            enable true
-//            reset()
-//            include 'x86', 'x86_64', 'arm64-v8a', 'armeabi-v7a', 'armeabi'
-//            universalApk false
-//        }
-//    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':pennerlib')
+//    compile project(':pennerlib')
     testCompile 'junit:junit:4.12'
     androidTestCompile "com.android.support:support-annotations:$rootProject.ext.supportLibVersion"
-    androidTestCompile 'com.android.support.test:runner:0.4.1'
-    androidTestCompile 'com.android.support.test:rules:0.4.1'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.0') {
         exclude group: 'javax.inject'
         exclude group: 'com.android.support', module: 'appcompat'
@@ -106,7 +89,7 @@ dependencies {
     compile 'com.facebook.fresco:fresco:0.11.0'
     compile 'com.facebook.fresco:imagepipeline-okhttp:0.9.0'
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.jakewharton:butterknife:8.3.0'
     compile 'com.squareup.sqlbrite:sqlbrite:0.5.1'
     compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
     compile 'com.newrelic.agent.android:android-agent:5.+'
@@ -119,7 +102,7 @@ dependencies {
 }
 
 buildscript {
-    ext.kotlin_version = '1.0.0'
+    ext.kotlin_version = '1.0.5-3'
     repositories {
         mavenCentral()
     }
@@ -132,22 +115,4 @@ buildscript {
 }
 repositories {
     mavenCentral()
-}
-
-def getNdkDir() {
-    if (System.env.ANDROID_NDK != null)
-       return System.env.ANDROID_NDK
-
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    def ndkdir = properties.getProperty('ndk.dir', null)
-    if (ndkdir == null)
-        throw new GradleException("NDK location not found. Define location with ndk.dir in the local.properties file or with an ANDROID_NDK_ROOT environment variable.")
-
-    return ndkdir
-}
-
-def getNdkBuildCmd() {
-    def ndkbuild = getNdkDir() + "/ndk-build"
-    return ndkbuild
 }

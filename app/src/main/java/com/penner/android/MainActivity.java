@@ -16,9 +16,9 @@ import com.penner.android.base.BaseActivity;
 import com.penner.android.model.main.MainViewPagerAdapter;
 import com.penner.android.view.SupportFragment;
 import com.penner.android.view.main.MainFragment;
-import com.penner.lib.annotation.Test;
+//import com.penner.lib.annotation.Test;
 
-@Test("haha")
+//@Test("haha")
 public class MainActivity extends BaseActivity {
 
     private DrawerLayout mDrawerLayout;

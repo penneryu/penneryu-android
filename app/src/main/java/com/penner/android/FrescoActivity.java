@@ -12,26 +12,26 @@ import android.widget.Button;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.penner.android.base.BaseActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FrescoActivity extends BaseActivity {
 
-    @Bind(R.id.fresco_palette)
+    @BindView(R.id.fresco_palette)
     Button faletteBtn;
-    @Bind(R.id.freso_palette_vibrant)
+    @BindView(R.id.freso_palette_vibrant)
     View vibrantView;
-    @Bind(R.id.freso_palette_vibrant_dark)
+    @BindView(R.id.freso_palette_vibrant_dark)
     View vibrantDrakView;
-    @Bind(R.id.freso_palette_vibrant_light)
+    @BindView(R.id.freso_palette_vibrant_light)
     View vibrantLightView;
-    @Bind(R.id.fresco_palette_mute)
+    @BindView(R.id.fresco_palette_mute)
     View muteView;
-    @Bind(R.id.fresco_palette_mute_dark)
+    @BindView(R.id.fresco_palette_mute_dark)
     View muteDarkView;
-    @Bind(R.id.fresco_palette_mute_light)
+    @BindView(R.id.fresco_palette_mute_light)
     View muteLightView;
-    @Bind(R.id.freco_palette_singleview)
+    @BindView(R.id.freco_palette_singleview)
     View singleView;
 
     @Override

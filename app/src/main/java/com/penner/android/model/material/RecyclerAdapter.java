@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import com.penner.android.R;
 import com.penner.android.view.material.MaterialDetailActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -50,7 +50,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.CellVi
 
     public class CellViewHodler extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.material_avatar)
+        @BindView(R.id.material_avatar)
         ImageView imageView;
 
         public CellViewHodler(View itemView) {

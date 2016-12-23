@@ -11,16 +11,16 @@ import com.penner.android.base.BaseActivity;
 import com.penner.android.util.LogUtils;
 import com.penner.android.view.emoji.AndroidEmoji;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class EmojiActivity extends BaseActivity {
 
-    @Bind(R.id.emoji_edit_name)
+    @BindView(R.id.emoji_edit_name)
     EditText emojiEdit;
-    @Bind(R.id.emoji_txt)
+    @BindView(R.id.emoji_txt)
     TextView emojiText;
-    @Bind(R.id.emoji_btn)
+    @BindView(R.id.emoji_btn)
     Button emojiBtn;
 
     @Override

@@ -3,6 +3,7 @@
 
 # JNI
 /app/src/main/obj/
+app/.externalNativeBuild/
 
 # Built application files
 *.apk

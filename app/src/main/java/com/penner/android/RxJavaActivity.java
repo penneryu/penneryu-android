@@ -10,7 +10,7 @@ import com.penner.android.util.LogUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -18,7 +18,7 @@ import rx.schedulers.Schedulers;
 
 public class RxJavaActivity extends BaseActivity {
 
-    @Bind(R.id.rxjava_txt)
+    @BindView(R.id.rxjava_txt)
     TextView mRxjavaTextView;
 
     @Override

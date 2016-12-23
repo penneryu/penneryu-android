@@ -20,7 +20,7 @@ import com.penner.android.view.bottomtab.ChatActivity;
 import java.util.Date;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -80,19 +80,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recyle
 
     class RecylerViewHodler extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.home_cov_common_root)
+        @BindView(R.id.home_cov_common_root)
         View root;
-        @Bind(R.id.home_cov_common_name)
+        @BindView(R.id.home_cov_common_name)
         TextView name;
-        @Bind(R.id.home_cov_common_unread)
+        @BindView(R.id.home_cov_common_unread)
         TextView unread;
-        @Bind(R.id.home_cov_common_content)
+        @BindView(R.id.home_cov_common_content)
         TextView content;
-        @Bind(R.id.home_cov_common_time)
+        @BindView(R.id.home_cov_common_time)
         TextView time;
-        @Bind(R.id.home_cov_common_msgstate)
+        @BindView(R.id.home_cov_common_msgstate)
         ImageView state;
-        @Bind(R.id.home_cov_common_avatar)
+        @BindView(R.id.home_cov_common_avatar)
         ImageView avatar;
 
         public RecylerViewHodler(View itemView) {

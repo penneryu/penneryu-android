@@ -17,7 +17,7 @@ import com.penner.android.view.bottomtab.penner.chat.BaseMessageView;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -98,20 +98,20 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHodler
 
     public static class ChatViewHodler extends RecyclerView.ViewHolder {
         @Nullable
-        @Bind(R.id.chat_msg_sending)
+        @BindView(R.id.chat_msg_sending)
         public ProgressBar pb;
         @Nullable
-        @Bind(R.id.chat_msg_status)
+        @BindView(R.id.chat_msg_status)
         public ImageView staus;
         @Nullable
-        @Bind(R.id.chat_msg_userid)
+        @BindView(R.id.chat_msg_userid)
         public TextView userId;
 
-        @Bind(R.id.chat_msg_userhead)
+        @BindView(R.id.chat_msg_userhead)
         public ImageView head;
-        @Bind(R.id.chat_msg_timestamp)
+        @BindView(R.id.chat_msg_timestamp)
         public TextView timestamp;
-        @Bind(R.id.chat_msg_content)
+        @BindView(R.id.chat_msg_content)
         public View content;
 
         public ChatViewHodler(View itemView) {
