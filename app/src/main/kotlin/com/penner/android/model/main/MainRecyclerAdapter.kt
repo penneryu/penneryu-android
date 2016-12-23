@@ -22,7 +22,7 @@ class MainRecyclerAdapter(var context: Activity, var list: List<String>) : Recyc
 
     override fun onBindViewHolder(holder: CellViewHodler?, position: Int) {
         val value = list.get(position)
-        holder?.title?.text = value;
+        holder?.title?.text = value
         holder?.itemView?.setOnClickListener({
             if (position == 0) {
                 context.startActivity(Intent(context, FrescoActivity::class.java))
@@ -56,6 +56,8 @@ class MainRecyclerAdapter(var context: Activity, var list: List<String>) : Recyc
                 context.startActivity(Intent(context, PdfActivity::class.java))
             } else if (position == 15) {
                 context.startActivity(Intent(context, MyNativeActivity::class.java))
+            } else if (position == 16) {
+                context.startActivity(Intent(context, TestActivity::class.java))
             }
         })
     }
@@ -69,7 +71,7 @@ class MainRecyclerAdapter(var context: Activity, var list: List<String>) : Recyc
         var title: TextView? = null
 
         constructor(itemView: View) : super(itemView) {
-            title = itemView.findViewById(R.id.penner_recycler_txt_tile) as TextView;
+            title = itemView.findViewById(R.id.penner_recycler_txt_tile) as TextView
         }
     }
 }

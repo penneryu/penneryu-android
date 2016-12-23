@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'newrelic'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -40,19 +39,10 @@ android {
             java.srcDirs += 'src/main/kotlin'
         }
     }
-    //为了解决部分第三方库重复打包了META-INF的问题
-    packagingOptions{
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-        pickFirst 'META-INF/services/javax.annotation.processing.Processor'
-    }
 //    compileOptions {
 //        sourceCompatibility JavaVersion.VERSION_1_8
 //        targetCompatibility JavaVersion.VERSION_1_8
 //    }
-    lintOptions {
-        abortOnError false
-    }
     dataBinding {
         enabled = true
     }
@@ -61,13 +51,11 @@ android {
             path "src/main/cpp/CMakeLists.txt"
         }
     }
-    productFlavors {
-    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-//    compile project(':pennerlib')
+    compile project(':pennerlib')
     testCompile 'junit:junit:4.12'
     androidTestCompile "com.android.support:support-annotations:$rootProject.ext.supportLibVersion"
     androidTestCompile 'com.android.support.test:runner:0.5'
@@ -82,6 +70,7 @@ dependencies {
     }
     compile "com.android.support:design:$rootProject.ext.supportLibVersion"
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
+    compile "com.android.support:support-annotations:$rootProject.ext.supportLibVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibVersion"
     compile "com.android.support:cardview-v7:$rootProject.ext.supportLibVersion"
     compile "com.android.support:palette-v7:$rootProject.ext.supportLibVersion"
@@ -89,7 +78,8 @@ dependencies {
     compile 'com.facebook.fresco:fresco:0.11.0'
     compile 'com.facebook.fresco:imagepipeline-okhttp:0.9.0'
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.jakewharton:butterknife:8.3.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.squareup.sqlbrite:sqlbrite:0.5.1'
     compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
     compile 'com.newrelic.agent.android:android-agent:5.+'
@@ -109,8 +99,7 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.newrelic.agent.android:agent-gradle-plugin:5.+"
-        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'me.tatarka:gradle-retrolambda:3.4.0'
     }
 }
 repositories {

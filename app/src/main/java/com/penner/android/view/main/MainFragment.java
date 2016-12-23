@@ -43,6 +43,7 @@ public class MainFragment extends Fragment {
         list.add("Emoji");
         list.add("Pdf");
         list.add("NativeActivity");
+        list.add("Test");
         recyclerView.setAdapter(new MainRecyclerAdapter(getActivity(), list));
         return recyclerView;
     }

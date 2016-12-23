@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.penner.android">
+          package="com.penner.android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".model.PennerApplication"
@@ -18,124 +18,130 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT"/>
 
-                <data android:mimeType="image/*" />
+                <data android:mimeType="image/*"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT"/>
 
-                <data android:mimeType="text/plain" />
+                <data android:mimeType="text/plain"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <action android:name="android.intent.action.SEND_MULTIPLE"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT"/>
 
-                <data android:mimeType="image/*" />
+                <data android:mimeType="image/*"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".KotlinActivity"
             android:label="Kotlin"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".FrescoActivity"
             android:label="Fresco"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LoginActivity"
             android:label="@string/login"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".BottomTabActivity"
             android:label="PennerYu"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DatabindingActivity"
             android:label="Data Binding"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ServiceActivity"
             android:label="ServiceActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MaterialActivity"
             android:label="Material"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.material.MaterialDetailActivity"
             android:label="MaterialDetail"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".LargeImageActivity"
             android:label="LargeImage"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".view.bottomtab.ChatActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity
             android:name=".ScaleGestureActivity"
             android:label="SurfaceView"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".RxJavaActivity"
             android:label="RxJava"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SqlbriteActivity"
             android:label="Sqlbrite"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".NdkActivity"
             android:label="Ndk"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".AshmenActivity"
             android:label="Ashmen"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".WebViewActivity"
             android:label="WebView"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".EmojiActivity"
             android:label="Emoji"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".PdfActivity"
             android:label="Pdf"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".TestActivity"
+            android:label="Test"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MyNativeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="Native">
 
-        <activity android:name=".MyNativeActivity"
-                  android:label="Native"
-                  android:configChanges="orientation|keyboardHidden">
             <!-- Tell NativeActivity the name of our .so -->
-            <meta-data android:name="android.app.lib_name"
-                       android:value="native-activity" />
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="native-activity"/>
         </activity>
 
         <service
             android:name=".model.service.LocalService"
             android:exported="false"
-            android:process=":Server" />
+            android:process=":Server"/>
         <service
             android:name=".model.ashmen.Server"
             android:exported="false"
             android:process=":Server">
             <intent-filter>
-                <action android:name="com.penner.android.model.ashmen.action.SERVER" />
+                <action android:name="com.penner.android.model.ashmen.action.SERVER"/>
             </intent-filter>
         </service>
         <service
@@ -143,7 +149,7 @@
             android:exported="false"
             android:process=":Server">
             <intent-filter>
-                <action android:name="com.penner.android.model.ashmen.action.Remote" />
+                <action android:name="com.penner.android.model.ashmen.action.Remote"/>
             </intent-filter>
         </service>
         <service
@@ -152,14 +158,13 @@
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
             android:process=":Server">
             <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService" />
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.accessibilityservice"
-                android:resource="@xml/penner_accessibility_config" />
+                android:resource="@xml/penner_accessibility_config"/>
         </service>
-
     </application>
 
 </manifest>

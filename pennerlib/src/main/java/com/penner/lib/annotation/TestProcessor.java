@@ -19,6 +19,9 @@ import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 
+import static javax.lang.model.element.Modifier.PUBLIC;
+import static javax.lang.model.element.Modifier.STATIC;
+
 /**
  * Created by penneryu on 16/8/7.
  */
@@ -38,15 +41,20 @@ public class TestProcessor extends AbstractProcessor {
                 processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR, "only support class");
             }
             MethodSpec main = MethodSpec.methodBuilder("main")
-                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .addModifiers(PUBLIC, STATIC)
                     .returns(void.class)
                     .addParameter(String[].class, "args")
                     .addStatement("$T.out.println($S)", System.class, "Hello, JavaPoet!")
                     .build();
 
-            TypeSpec helloWorld =
-                    TypeSpec.classBuilder("HelloWorld").addModifiers(Modifier.PUBLIC, Modifier.FINAL).addMethod(main).build();
-            JavaFile javaFile = JavaFile.builder("com.penner.apt", helloWorld).build();
+            String className = element.getAnnotation(Test.class).value();
+            if (className.equals("")) {
+                className = "HelloWorld";
+            }
+
+            TypeSpec crateClass =
+                    TypeSpec.classBuilder(className).addModifiers(Modifier.PUBLIC, Modifier.FINAL).addMethod(main).build();
+            JavaFile javaFile = JavaFile.builder("com.penner.annotation", crateClass).build();
 
             try {
                 javaFile.writeTo(processingEnv.getFiler());
@@ -59,6 +67,6 @@ public class TestProcessor extends AbstractProcessor {
 
     @Override
     public SourceVersion getSupportedSourceVersion() {
-        return SourceVersion.RELEASE_8;
+        return SourceVersion.latestSupported();
     }
 }
