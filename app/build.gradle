@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'newrelic'
+//apply plugin: 'newrelic'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
@@ -82,13 +82,15 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.squareup.sqlbrite:sqlbrite:0.5.1'
     compile 'cn.leancloud.android:avoscloud-sdk:v3.+'
-    compile 'com.newrelic.agent.android:android-agent:5.+'
+//    compile 'com.newrelic.agent.android:android-agent:4.244.0'
     compile('io.socket:socket.io-client:0.6.2') {
         exclude group: 'org.json', module: 'json'
     }
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     compile 'io.reactivex:rxandroid:1.1.0'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
 }
 
 buildscript {
@@ -98,7 +100,7 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.newrelic.agent.android:agent-gradle-plugin:5.+"
+//        classpath 'com.newrelic.agent.android:agent-gradle-plugin:4.244.0'
         classpath 'me.tatarka:gradle-retrolambda:3.4.0'
     }
 }

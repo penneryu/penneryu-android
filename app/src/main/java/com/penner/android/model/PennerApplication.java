@@ -2,6 +2,7 @@ package com.penner.android.model;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.StrictMode;
 
 import com.avos.avoscloud.AVOSCloud;
 import com.facebook.cache.disk.DiskCacheConfig;
@@ -12,9 +13,10 @@ import com.facebook.imagepipeline.cache.MemoryCacheParams;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.listener.RequestListener;
 import com.facebook.imagepipeline.listener.RequestLoggingListener;
+import com.penner.android.BuildConfig;
 import com.penner.android.util.Constants;
-import com.penner.android.util.LogUtils;
 import com.penner.android.util.PennerUtils;
+import com.squareup.leakcanary.LeakCanary;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.HashSet;
@@ -32,7 +34,14 @@ public class PennerApplication extends Application {
         leanCloudInit();
         frescoInit(getApplicationContext());
 
-        LogUtils.d("application", "pennerapplication");
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().penaltyLog().build());
+            if (LeakCanary.isInAnalyzerProcess(this)) {
+                return;
+            }
+            LeakCanary.install(this);
+        }
     }
 
     private void leanCloudInit() {

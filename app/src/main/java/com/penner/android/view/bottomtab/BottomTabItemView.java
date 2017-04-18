@@ -1,7 +1,7 @@
 package com.penner.android.view.bottomtab;
 
 import android.content.Context;
-import android.text.TextUtils;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,11 +31,20 @@ public class BottomTabItemView extends RelativeLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    public void initView(int tabImgResid, String tabName, String unread) {
-        mTabImage.setImageResource(tabImgResid);
+    public void initView(int tabImgResid, String tabName) {
+        mTabImage.setImageDrawable(ContextCompat.getDrawable(getContext(), tabImgResid));
         mTabText.setText(tabName);
-        if (!TextUtils.isEmpty(unread)) {
-            mUnreadText.setText(unread);
+    }
+
+    public void setUnreadText(int count) {
+        if (count > 0) {
+            String tips;
+            if (count > 99) {
+                tips = "...";
+            } else {
+                tips = String.valueOf(count);
+            }
+            mUnreadText.setText(tips);
             mUnreadText.setVisibility(View.VISIBLE);
         } else {
             mUnreadText.setVisibility(View.INVISIBLE);

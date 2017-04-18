@@ -48,10 +48,10 @@ public class BottomTabActivity extends BaseActivity {
         mFilesTabItem = (BottomTabItemView)findViewById(R.id.bottom_tab_files);
         mProfileTabItem = (BottomTabItemView)findViewById(R.id.bottom_tab_profile);
 
-        mPubuTabItem.initView(R.drawable.bottom_tab_penner, getResources().getString(R.string.bottom_tab_penner), null);
-        mContactTabItem.initView(R.drawable.bottom_tab_penner, getResources().getString(R.string.bottom_tab_contract), null);
-        mFilesTabItem.initView(R.drawable.bottom_tab_penner, getResources().getString(R.string.bottom_tab_file), null);
-        mProfileTabItem.initView(R.drawable.bottom_tab_penner, getResources().getString(R.string.bottom_tab_profile), null);
+        mPubuTabItem.initView(R.drawable.bottom_tab_penner, getResources().getString(R.string.bottom_tab_penner));
+        mContactTabItem.initView(R.drawable.bottom_tab_penner, getResources().getString(R.string.bottom_tab_contract));
+        mFilesTabItem.initView(R.drawable.bottom_tab_penner, getResources().getString(R.string.bottom_tab_file));
+        mProfileTabItem.initView(R.drawable.bottom_tab_penner, getResources().getString(R.string.bottom_tab_profile));
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
@@ -78,7 +78,13 @@ public class BottomTabActivity extends BaseActivity {
                 mPennerFragment,
                 mContactFragment,
                 mFilesFragment, mProfileFragment};
+
         showFragment(mTabCurrentIndex);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if (!mFragments[mTabCurrentIndex].isAdded()) {
+            fragmentTransaction.add(R.id.bottom_content_fragment, mFragments[mTabCurrentIndex]);
+        }
+        fragmentTransaction.show(mFragments[mTabCurrentIndex]).commitNowAllowingStateLoss();
     }
 
     private void onTabClicked(View view) {
@@ -101,31 +107,18 @@ public class BottomTabActivity extends BaseActivity {
     }
 
     private void showFragment(int index) {
-        switch (index) {
-            case 0:
-                getToolbar().setTitle(getString(R.string.bottom_tab_penner));
-                break;
-            case 1:
-                getToolbar().setTitle(getString(R.string.bottom_tab_contract));
-                break;
-            case 2:
-                getToolbar().setTitle(getString(R.string.bottom_tab_file));
-                break;
-            case 3:
-                getToolbar().setTitle(getString(R.string.bottom_tab_profile));
-                break;
-        }
-        if (mTabCurrentIndex != index || !mFragments[index].isAdded()) {
+        supportInvalidateOptionsMenu();
+        if (mTabCurrentIndex != index) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.hide(mFragments[mTabCurrentIndex]);
             if (!mFragments[index].isAdded()) {
-                fragmentTransaction.add(R.id.bottom_tab_fragment, mFragments[index]);
+                fragmentTransaction.add(R.id.bottom_content_fragment, mFragments[index]);
             }
-            fragmentTransaction.show(mFragments[index]).commitAllowingStateLoss();
+            fragmentTransaction.show(mFragments[index]).commitNowAllowingStateLoss();
+            mTabItems[mTabCurrentIndex].setSelected(false);
+            mTabItems[index].setSelected(true);
+            mTabCurrentIndex = index;
         }
-        mTabItems[mTabCurrentIndex].setSelected(false);
-        mTabItems[index].setSelected(true);
-        mTabCurrentIndex = index;
     }
 
     @Override
@@ -133,5 +126,6 @@ public class BottomTabActivity extends BaseActivity {
         super.onSaveInstanceState(outState);
 
         outState.putInt("tabindex", mTabCurrentIndex);
+        onStateNotSaved();
     }
 }

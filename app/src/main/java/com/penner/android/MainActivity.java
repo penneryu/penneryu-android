@@ -11,7 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.newrelic.agent.android.NewRelic;
+//import com.newrelic.agent.android.NewRelic;
 import com.penner.android.base.BaseActivity;
 import com.penner.android.model.main.MainViewPagerAdapter;
 import com.penner.android.view.SupportFragment;
@@ -29,9 +29,9 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         setElevation(0);
 
-        NewRelic.withApplicationToken(
-                "AA42071ed4924fbe1c589716303352c0aa7135b860"
-        ).start(this.getApplication());
+//        NewRelic.withApplicationToken(
+//                "AA42071ed4924fbe1c589716303352c0aa7135b860"
+//        ).start(this.getApplication());
 
         getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_menu);
 

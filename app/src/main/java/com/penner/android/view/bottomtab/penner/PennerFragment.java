@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.penner.android.R;
 import com.penner.android.data.bottomtab.ConversationInfo;
 import com.penner.android.data.bottomtab.LocalConversationFactory;
+import com.penner.android.model.bottomtab.penner.RecyclerAdapter;
 import com.penner.android.util.LogUtils;
 
 import java.util.ArrayList;
@@ -42,8 +43,8 @@ public class PennerFragment extends Fragment implements Action1<List<Conversatio
         LocalConversationFactory factory = new LocalConversationFactory(getActivity());
 
         factory.sqlBriteFindRecords(this);
-//        conversationInfos = factory.findRecords();
-//        recyclerView.setAdapter(new RecyclerAdapter(getActivity(), conversationInfos));
+        conversationInfos = factory.findRecords();
+        recyclerView.setAdapter(new RecyclerAdapter(getActivity(), conversationInfos));
 
         List<ConversationInfo> conversationInfos = new ArrayList<>(2);
         ConversationInfo info1 = new ConversationInfo();
@@ -72,6 +73,7 @@ public class PennerFragment extends Fragment implements Action1<List<Conversatio
     public void call(List<ConversationInfo> conversationInfos) {
         LogUtils.d("PennerFragment", String.valueOf(conversationInfos.size()));
         LogUtils.d("PennerFragment", String.valueOf(Looper.getMainLooper().equals(Looper.myLooper())));
+
         this.conversationInfos = conversationInfos;
         recyclerView.getAdapter().notifyDataSetChanged();
     }

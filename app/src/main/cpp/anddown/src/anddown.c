@@ -21,7 +21,7 @@
 #define INPUT_UNIT 64
 #define OUTPUT_UNIT 64
 
-JNIEXPORT jstring JNICALL Java_com_penner_android_NdkActivity_markdownToHtml
+JNIEXPORT jstring JNICALL Java_com_penner_android_TestActivity_markdownToHtml
   (JNIEnv *env, jobject o, jstring raw, jboolean hasStrong) {
   struct hoedown_buffer *ib, *ob;
   jstring result;
