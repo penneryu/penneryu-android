@@ -3,14 +3,17 @@ package com.penner.android;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.RequiresPermission;
 import android.telephony.TelephonyManager;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
-import com.penner.android.base.BaseActivity;
 import com.penner.android.util.LogUtils;
 import com.penner.lib.annotation.Test;
 
@@ -27,6 +30,11 @@ public class TestActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        TextView textView = (TextView)findViewById(R.id.test_txt);
+        SpannableString msp = new SpannableString("测试文字");
+        msp.setSpan(new ForegroundColorSpan(Color.RED), 0, msp.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(msp);
 
         Runtime runtime = Runtime.getRuntime();
         LogUtils.d("penner", runtime.maxMemory() + " " + runtime.totalMemory() + " " + runtime.freeMemory());

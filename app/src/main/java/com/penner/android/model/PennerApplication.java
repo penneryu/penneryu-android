@@ -13,6 +13,7 @@ import com.facebook.imagepipeline.cache.MemoryCacheParams;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.listener.RequestListener;
 import com.facebook.imagepipeline.listener.RequestLoggingListener;
+import com.facebook.stetho.Stetho;
 import com.penner.android.BuildConfig;
 import com.penner.android.util.Constants;
 import com.penner.android.util.PennerUtils;
@@ -33,6 +34,7 @@ public class PennerApplication extends Application {
 
         leanCloudInit();
         frescoInit(getApplicationContext());
+        Stetho.initializeWithDefaults(this);
 
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build());

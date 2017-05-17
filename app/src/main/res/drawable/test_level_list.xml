@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:maxLevel="0">
+        <color android:color="#e3e3e3" />
+    </item>
+    <item android:maxLevel="1">
+        <color android:color="#249fff" />
+    </item>
+    <item android:maxLevel="2">
+        <color android:color="#f1c40f" />
+    </item>
+    <item android:maxLevel="3">
+        <color android:color="#00c372" />
+    </item>
+    <item android:maxLevel="4">
+        <color android:color="#e74c3c" />
+    </item>
+
+</level-list>
